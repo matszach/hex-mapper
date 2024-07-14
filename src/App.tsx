@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import CanvasComponent from './component/canvas/CanvasComponent';
+import CanvasComponent from './components/canvas/CanvasComponent';
 
 export default function App() {
   return (
