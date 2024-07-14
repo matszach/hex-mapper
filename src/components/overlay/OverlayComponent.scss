@@ -8,11 +8,13 @@
     background-color: rgb(44, 42, 42);
     width: 100vw;
     height: 3rem;
+    filter: drop-shadow(0 0 0.5rem black);
   }
   &__aside {
     pointer-events: all;
     background-color: rgb(73, 73, 77);
     width: 20rem;
     height: calc(100vh - 3rem);
+    filter: drop-shadow(0 0 0.5rem black);
   }
 }
