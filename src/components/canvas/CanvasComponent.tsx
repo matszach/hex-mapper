@@ -11,7 +11,6 @@ Konva.dragButtons = [2]
 export default function CanvasComponent() {
   const size = useWindowSize()
   const [zoom, setZoom] = useZoom({ rate: 1.2 })
-  // TODO drag on right click only 
   return (
     <Stage
       width={size.width} height={size.height} 

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Hex from "./Hex"
 import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
 import { useBoolean } from "../../../hooks/use-boolean"
