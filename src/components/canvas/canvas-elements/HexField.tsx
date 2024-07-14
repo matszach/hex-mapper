@@ -22,9 +22,9 @@ export default function HexField(props: HexFieldProps) {
       stroke={isHovered ? "blue" : "black"}
       strokeWidth={isHovered ? 3 : 1}
       zIndex={isHovered ? 1000 : 0}
-      onMouseEnter={setHovered}
-      onMouseLeave={setNoHovered}
-      onMouseDown={props.onMouseDown}
+      // onMouseEnter={setHovered}
+      // onMouseLeave={setNoHovered}
+      // onMouseDown={props.onMouseDown}
     ></Hex>
   )
 }

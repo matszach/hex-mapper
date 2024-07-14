@@ -34,10 +34,10 @@ export default function Hex(
     strokeWidth={strokeWidth}
     fill={fill}
     closed={true}
-    onMouseEnter={props.onMouseEnter}
-    onMouseLeave={props.onMouseLeave}
-    onMouseDown={props.onMouseDown}
-    onMouseUp={props.onMouseUp}
+    // onMouseEnter={props.onMouseEnter}
+    // onMouseLeave={props.onMouseLeave}
+    // onMouseDown={props.onMouseDown}
+    // onMouseUp={props.onMouseUp}
     zIndex={props.zIndex}
   ></Line>
 }
