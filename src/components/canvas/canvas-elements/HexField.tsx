@@ -1,31 +1,30 @@
-import { useContext, useState } from "react"
-import Hex, { HEX_COORDS, HEX_RATIO } from "./Hex"
-import { GlobalContext } from "../../../global-state/global-state.model"
+import { useState } from "react"
+import Hex from "./Hex"
+import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
 
 export interface HexFieldProps {
   pos: [number, number]
   fill?: string
   pattern?: string
-  icon?: string                     
+  icon?: string,
+  onMouseDown?: () => void                  
 }
 
-export default function HexField(
-  { pos, fill, pattern, icon }: HexFieldProps
-) {
-  const { state, update } = useContext(GlobalContext)
+export default function HexField(props: HexFieldProps) {
   const [isHovered, setHovered] = useState(false)
-  const [xPos, yPos] = pos
+  const [xPos, yPos] = props.pos
   return (
     <Hex
-      x={xPos * (state.fieldSize * (1 + HEX_RATIO / 2) + 2)}
-      y={yPos * state.fieldSize * 2 * HEX_RATIO  + (xPos % 2 === 0 ? state.fieldSize * HEX_RATIO * 2 / 2 : 0)}
-      fill={fill}
-      radius={state.fieldSize}
+      x={xPos * (FIELD_SIZE * X_RATIO + X_OFFSET)}
+      y={yPos * FIELD_SIZE * Y_RATIO  + (xPos % 2 === 0 ? FIELD_SIZE * Y_RATIO / 2 : 0)}
+      fill={props.fill}
+      radius={40}
       stroke={isHovered ? "blue" : "black"}
       strokeWidth={isHovered ? 3 : 1}
       zIndex={isHovered ? 1000 : 0}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onMouseDown={props.onMouseDown}
     ></Hex>
   )
 }

@@ -15,15 +15,13 @@ export interface HexProps {
   zIndex?: number
 }
 
-export const HEX_RATIO = Math.sqrt(3) / 2
-
-export const HEX_COORDS = [
+const HEX_COORDS = [
   1, 0,
-  0.5, HEX_RATIO,
-  -0.5, HEX_RATIO,
+  0.5, Math.sqrt(3) / 2,
+  -0.5, Math.sqrt(3) / 2,
   -1, 0,
-  -0.5, -HEX_RATIO,
-  0.5, -HEX_RATIO
+  -0.5, -Math.sqrt(3) / 2,
+  0.5, -Math.sqrt(3) / 2
 ]
 
 export default function Hex(
