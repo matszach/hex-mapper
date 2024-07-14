@@ -5,9 +5,8 @@ import CanvasComponent from './component/canvas/CanvasComponent';
 export default function App() {
   return (
     <div className="App">
-      Hello World
-      {/* nav */}
-      {/* options ? */}
+      {/* nav, float */}
+      {/* options as sidebars */}
       <CanvasComponent></CanvasComponent>
     </div>
   );

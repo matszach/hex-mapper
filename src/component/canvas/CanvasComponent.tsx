@@ -1,22 +1,20 @@
 import { Stage, Layer } from 'react-konva';
 import './CanvasComponent.scss';
-import Hex from './canvas-elements/Hex';
+import HexField from './canvas-elements/HexField';
+import { useWindowSize } from 'usehooks-ts';
 
 export default function CanvasComponent() {
+  const size = useWindowSize()
   return (
     <Stage
-      width={window.innerWidth}
-      height={window.innerHeight}
+      width={size.width}
+      height={size.height}
     >
-      <Layer>
-        <Hex
-          x={window.innerWidth / 2}
-          y={window.innerHeight / 2}
-          radius={100}
-          stroke='blue'
-          strokeWidth={5}
-          fill='red'
-        ></Hex>
+      <Layer offsetX={-size.width / 2} offsetY={-size.height / 2}>
+        <HexField
+          x={0}
+          y={0}
+        ></HexField>
       </Layer>
     </Stage>
   )

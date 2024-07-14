@@ -5,10 +5,9 @@ export interface HexProps {
   x?: number, 
   y?: number, 
   radius?: number, 
-  rotation?: number, 
   stroke?: string, 
   strokeWidth?: number, 
-  fill?: string,
+  fill?: string
 }
 
 export const HEX_COORDS = [
@@ -21,12 +20,11 @@ export const HEX_COORDS = [
 ]
 
 export default function Hex(
-  { x = 0, y = 0, radius = 10, rotation = 0, stroke = 'black', strokeWidth = 1, fill = 'white' }: HexProps
+  { x = 0, y = 0, radius = 10, stroke = 'black', strokeWidth = 1, fill = 'white' }: HexProps
 ) {
   const points = batchMap(HEX_COORDS, 2, ([px, py]) => [px * radius + x, py * radius + y])
   return <Line
     points={points}
-    rotation={rotation}
     stroke={stroke}
     strokeWidth={strokeWidth}
     fill={fill}
