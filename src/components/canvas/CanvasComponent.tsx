@@ -8,11 +8,12 @@ import { useZoom } from '../../hooks/use-zoom';
 export default function CanvasComponent() {
   const size = useWindowSize()
   const [zoom, setZoom] = useZoom({ rate: 1.2 })
+  // TODO drag on right click only 
   return (
     <Stage 
       width={size.width} height={size.height} 
       onWheel={setZoom} scale={zoom}
-      draggable
+      draggable onContextMenu={e => e.evt.preventDefault()}
     >
       <Layer> 
         {gridCoords(50, 30).map(([x, y]) => <HexField key={`${x}-${y}`} pos={[x, y]} />)}

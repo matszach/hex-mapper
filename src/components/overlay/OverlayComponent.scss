@@ -1,0 +1,18 @@
+.Overlay {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  color: white;
+  &__nav {
+    pointer-events: all;
+    background-color: rgb(44, 42, 42);
+    width: 100vw;
+    height: 3rem;
+  }
+  &__aside {
+    pointer-events: all;
+    background-color: rgb(73, 73, 77);
+    width: 20rem;
+    height: calc(100vh - 3rem);
+  }
+}
