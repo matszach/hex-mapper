@@ -1,4 +1,4 @@
-import { Stage, Layer } from 'react-konva';
+import { Stage, Layer, Text } from 'react-konva';
 import './CanvasComponent.scss';
 import HexField from './canvas-elements/HexField';
 import { useWindowSize } from 'usehooks-ts';
@@ -8,6 +8,7 @@ import { useContext } from 'react';
 import { GlobalContext } from '../../global-state/global-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
+import ToolIndicator from './canvas-elements/ToolIndicator';
 
 Konva.dragButtons = [2]
 
@@ -28,8 +29,8 @@ export default function CanvasComponent() {
           <HexField key={`${hf.x}-${hf.y}`} {...hf}/>
         ))}
       </Layer>
-      <Layer>
-        {/* tool layer */}
+      <Layer listening={false}>
+        <ToolIndicator/>
       </Layer>
     </Stage>
   )

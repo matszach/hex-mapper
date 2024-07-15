@@ -8,6 +8,9 @@ export class DrawHandler {
 
   private tool: Tool = new Tool()
 
+  public hoveredHex: HexmapField | null = null
+  public brushSize: number = 1
+
   static instance: DrawHandler
 
   static getInstance() {
@@ -24,6 +27,7 @@ export class DrawHandler {
   }
 
   onMouseEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: GlobalState, update: (newState: Partial<GlobalState>) => void) {
+    this.hoveredHex = hex
     // TODO remove the global state and make events for stuff like create new mape etc ?
     // TODO make the hexmap and array of arrays
     const field = state.hexmap.fields.find(f => f.x === hex.x && f.y === hex.y) 
@@ -35,6 +39,7 @@ export class DrawHandler {
   }
 
   onMouseLeaveHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: GlobalState, update: (newState: Partial<GlobalState>) => void) {
+    // this.hoveredHex = null // this causes stutter
     this.tool.onMouseLeaveHex(e, hex, state, update)
   }
 

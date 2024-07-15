@@ -18,7 +18,7 @@ export default function HexField(props: HexFieldProps) {
       radius={FIELD_SIZE}
       stroke={"black"}
       strokeWidth={1}
-      zIndex={0}
+      // zIndex={0}
       onMouseEnter={e => draw.onMouseEnterHex(e, props, state, update)}
       onMouseLeave={e => draw.onMouseLeaveHex(e, props, state, update)}
       onMouseDown={e => draw.onMouseDownHex(e, props, state, update)}
