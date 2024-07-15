@@ -2,19 +2,14 @@
   position: fixed;
   pointer-events: none;
   z-index: 1000;
-  color: white;
-  &__nav {
-    pointer-events: all;
-    background-color: darkgray;
-    width: 100vw;
-    height: 3rem;
+  &__nav, &__aside {
     filter: drop-shadow(0 0 0.25rem gray);
+    pointer-events: all;
+  }
+  &__nav {
+    background-color: darkgray;
   }
   &__aside {
-    pointer-events: all;
     background-color: lightgray;
-    width: 20rem;
-    height: calc(100vh - 3rem);
-    filter: drop-shadow(0 0 0.25rem gray);
   }
 }

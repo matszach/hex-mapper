@@ -7,6 +7,7 @@ import Konva from 'konva';
 import { useContext } from 'react';
 import { GlobalContext } from '../../global-state/global-state.model';
 import { prevent } from '../../utils/evt.utils';
+import { STAGE_OFFSET } from '../../const/sizes';
 
 Konva.dragButtons = [2]
 
@@ -20,7 +21,7 @@ export default function CanvasComponent() {
       onWheel={setZoom} scale={zoom}
       draggable
       onContextMenu={prevent}
-      offset={{ x: -380, y: -100 }}
+      offset={STAGE_OFFSET}
     >
       <Layer> 
         {state?.hexmap?.fields.map(hf => (
