@@ -1,30 +1,28 @@
 import Hex from "./Hex"
 import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
-import { useBoolean } from "../../../hooks/use-boolean"
+import { HexmapField } from "../../../global-state/hexmap.model"
+import { DrawHandler } from "../../../drawing-tools/draw-handler"
+import { GlobalContext } from "../../../global-state/global-state.model"
+import { useContext } from "react"
 
-export interface HexFieldProps {
-  pos: [number, number]
-  fill?: string
-  pattern?: string
-  icon?: string,
-  onMouseDown?: () => void                  
-}
+export interface HexFieldProps extends HexmapField { }
 
 export default function HexField(props: HexFieldProps) {
-  const [isHovered, setHovered, setNoHovered] = useBoolean(false) // hover outilien will likely depend on brush size
-  const [xPos, yPos] = props.pos
+  const draw: DrawHandler = DrawHandler.getInstance()
+  const { state, update } = useContext(GlobalContext)
   return (
     <Hex
-      x={xPos * (FIELD_SIZE * X_RATIO + X_OFFSET)}
-      y={yPos * FIELD_SIZE * Y_RATIO  + (xPos % 2 === 0 ? FIELD_SIZE * Y_RATIO / 2 : 0)}
+      x={props.x * (FIELD_SIZE * X_RATIO + X_OFFSET)}
+      y={props.y * FIELD_SIZE * Y_RATIO  + (props.x % 2 === 0 ? FIELD_SIZE * Y_RATIO / 2 : 0)}
       fill={props.fill}
-      radius={40}
-      stroke={isHovered ? "blue" : "black"}
-      strokeWidth={isHovered ? 3 : 1}
-      zIndex={isHovered ? 1000 : 0}
-      // onMouseEnter={setHovered}
-      // onMouseLeave={setNoHovered}
-      // onMouseDown={props.onMouseDown}
+      radius={FIELD_SIZE}
+      stroke={"black"}
+      strokeWidth={1}
+      zIndex={0}
+      onMouseEnter={e => draw.onMouseEnterHex(e, props, state, update)}
+      onMouseLeave={e => draw.onMouseLeaveHex(e, props, state, update)}
+      onMouseDown={e => draw.onMouseDownHex(e, props, state, update)}
+      onMouseUp={e => draw.onMouseUpHex(e, props, state, update)}
     ></Hex>
   )
 }

@@ -1,5 +1,6 @@
 import { Line } from "react-konva";
 import { batchMap } from "../../../utils/calc.utils";
+import Konva from "konva";
 
 export interface HexProps { 
   x?: number, 
@@ -8,10 +9,10 @@ export interface HexProps {
   stroke?: string, 
   strokeWidth?: number, 
   fill?: string,
-  onMouseEnter?: () => void,
-  onMouseLeave?: () => void,
-  onMouseDown?: () => void,
-  onMouseUp?: () => void,
+  onMouseEnter?: (e: Konva.KonvaEventObject<MouseEvent>) => void,
+  onMouseLeave?: (e: Konva.KonvaEventObject<MouseEvent>) => void,
+  onMouseDown?: (e: Konva.KonvaEventObject<MouseEvent>) => void,
+  onMouseUp?: (e: Konva.KonvaEventObject<MouseEvent>) => void,
   zIndex?: number
 }
 
@@ -34,10 +35,10 @@ export default function Hex(
     strokeWidth={strokeWidth}
     fill={fill}
     closed={true}
-    // onMouseEnter={props.onMouseEnter}
-    // onMouseLeave={props.onMouseLeave}
-    // onMouseDown={props.onMouseDown}
-    // onMouseUp={props.onMouseUp}
+    onMouseEnter={props.onMouseEnter}
+    onMouseLeave={props.onMouseLeave}
+    onMouseDown={props.onMouseDown}
+    onMouseUp={props.onMouseUp}
     zIndex={props.zIndex}
   ></Line>
 }

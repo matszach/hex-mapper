@@ -30,3 +30,7 @@ export function gridCoords(x: number, y: number): [number, number][] {
   }
   return coords
 }
+
+export function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max)
+}

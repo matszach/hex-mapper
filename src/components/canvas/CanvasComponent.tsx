@@ -6,22 +6,29 @@ import { useZoom } from '../../hooks/use-zoom';
 import Konva from 'konva';
 import { useContext } from 'react';
 import { GlobalContext } from '../../global-state/global-state.model';
+import { prevent } from '../../utils/evt.utils';
 
 Konva.dragButtons = [2]
 
 export default function CanvasComponent() {
   const size = useWindowSize()
-  const [zoom, setZoom] = useZoom({ rate: 1.2 })
+  const [zoom, setZoom] = useZoom({ rate: 1.2, max: 5, min: 0.25 })
   const { state } = useContext(GlobalContext)
   return (
     <Stage
       width={size.width} height={size.height} 
       onWheel={setZoom} scale={zoom}
       draggable
-      onContextMenu={e => e.evt.preventDefault()}
+      onContextMenu={prevent}
+      offset={{ x: -380, y: -100 }}
     >
       <Layer> 
-        {state?.hexmap?.fields.map(({ x, y }) => <HexField key={`${x}-${y}`} pos={[x, y]} />)}
+        {state?.hexmap?.fields.map(hf => (
+          <HexField key={`${hf.x}-${hf.y}`} {...hf}/>
+        ))}
+      </Layer>
+      <Layer>
+        {/* tool layer */}
       </Layer>
     </Stage>
   )
