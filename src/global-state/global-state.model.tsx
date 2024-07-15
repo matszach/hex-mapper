@@ -3,13 +3,15 @@ import { Hexmap } from "./hexmap.model"
 import { gridCoords } from "../utils/calc.utils"
 
 export interface GlobalState {
-  hexmap: Hexmap
+  hexmap: Hexmap,
+  hexmapHistory: Hexmap[]
 }
 
 export const defaultGlobalState: GlobalState = {
   hexmap: {
     fields: gridCoords(50, 30).map(([x, y]) => ({ x, y }))
-  }
+  },
+  hexmapHistory: []
 }
 
 export interface AppState {

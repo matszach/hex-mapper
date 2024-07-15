@@ -5,16 +5,16 @@
   color: white;
   &__nav {
     pointer-events: all;
-    background-color: rgb(44, 42, 42);
+    background-color: darkgray;
     width: 100vw;
     height: 3rem;
-    filter: drop-shadow(0 0 0.5rem black);
+    filter: drop-shadow(0 0 0.25rem gray);
   }
   &__aside {
     pointer-events: all;
-    background-color: rgb(73, 73, 77);
+    background-color: lightgray;
     width: 20rem;
     height: calc(100vh - 3rem);
-    filter: drop-shadow(0 0 0.5rem black);
+    filter: drop-shadow(0 0 0.25rem gray);
   }
 }
