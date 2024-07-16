@@ -8,7 +8,7 @@ import { AppContext } from '../../app-state/app-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
 import ToolIndicator from './canvas-elements/ToolIndicator';
-import { DrawHandler } from '../../drawing-tools/draw-handler';
+import { Draw } from '../../draw/draw';
 
 Konva.dragButtons = [2]
 
@@ -24,8 +24,8 @@ export default function CanvasComponent() {
       offset={STAGE_OFFSET}
     >
       <Layer
-        onMouseEnter={e => DrawHandler.onEnterCanvas(e, c)}
-        onMouseLeave={e => DrawHandler.onLeaveCanvas(e, c)}
+        onMouseEnter={e => Draw.onEnterCanvas(e, c)}
+        onMouseLeave={e => Draw.onLeaveCanvas(e, c)}
       > 
         {c.map?.fields.map(row => (
           row.map(field => (

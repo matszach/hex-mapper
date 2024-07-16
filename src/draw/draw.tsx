@@ -3,7 +3,7 @@ import { HexmapField } from "../app-state/hexmap.model";
 import { AppState } from "../app-state/app-state.model";
 import { BrushType } from "../app-state/brush.model";
 
-export class DrawHandler {
+export class Draw {
 
   static onEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, updateMap, brush, updateBrush }: AppState) {
     updateBrush({ hoveredHex: hex })

@@ -1,7 +1,7 @@
 import Hex from "./Hex"
 import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
 import { HexmapField } from "../../../app-state/hexmap.model"
-import { DrawHandler } from "../../../drawing-tools/draw-handler"
+import { Draw } from "../../../draw/draw"
 import { AppContext } from "../../../app-state/app-state.model"
 import { useContext } from "react"
 
@@ -18,10 +18,10 @@ export default function HexField(props: HexFieldProps) {
       stroke={"black"}
       strokeWidth={1}
       // zIndex={0}
-      onMouseEnter={e => DrawHandler.onEnterHex(e, props, context)}
-      onMouseLeave={e => DrawHandler.onLeaveHex(e, props, context)}
-      onMouseDown={e => DrawHandler.onDownHex(e, props, context)}
-      onMouseUp={e => DrawHandler.onUpHex(e, props, context)}
+      onMouseEnter={e => Draw.onEnterHex(e, props, context)}
+      onMouseLeave={e => Draw.onLeaveHex(e, props, context)}
+      onMouseDown={e => Draw.onDownHex(e, props, context)}
+      onMouseUp={e => Draw.onUpHex(e, props, context)}
     ></Hex>
   )
 }
