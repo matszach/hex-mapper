@@ -8,22 +8,26 @@ import { AppContext } from '../../app-state/app-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
 import ToolIndicator from './canvas-elements/ToolIndicator';
+import { DrawHandler } from '../../drawing-tools/draw-handler';
 
 Konva.dragButtons = [2]
 
 export default function CanvasComponent() {
   const size = useWindowSize()
-  const { map, zoom, handleZoom } = useContext(AppContext)
+  const c = useContext(AppContext)
   return (
     <Stage
       width={size.width} height={size.height} 
-      onWheel={handleZoom} scale={zoom}
+      onWheel={c.handleZoom} scale={c.zoom}
       draggable
       onContextMenu={prevent}
       offset={STAGE_OFFSET}
     >
-      <Layer> 
-        {map?.fields.map(row => (
+      <Layer
+        onMouseEnter={e => DrawHandler.onEnterCanvas(e, c)}
+        onMouseLeave={e => DrawHandler.onLeaveCanvas(e, c)}
+      > 
+        {c.map?.fields.map(row => (
           row.map(field => (
             <HexField key={`${field.x}-${field.y}`} {...field} />
           ))

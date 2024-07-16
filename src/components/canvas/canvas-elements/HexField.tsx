@@ -18,10 +18,10 @@ export default function HexField(props: HexFieldProps) {
       stroke={"black"}
       strokeWidth={1}
       // zIndex={0}
-      onMouseEnter={e => DrawHandler.onMouseEnterHex(e, props, context)}
-      onMouseLeave={e => DrawHandler.onMouseLeaveHex(e, props, context)}
-      onMouseDown={e => DrawHandler.onMouseDownHex(e, props, context)}
-      onMouseUp={e => DrawHandler.onMouseUpHex(e, props, context)}
+      onMouseEnter={e => DrawHandler.onEnterHex(e, props, context)}
+      onMouseLeave={e => DrawHandler.onLeaveHex(e, props, context)}
+      onMouseDown={e => DrawHandler.onDownHex(e, props, context)}
+      onMouseUp={e => DrawHandler.onUpHex(e, props, context)}
     ></Hex>
   )
 }
