@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GlobalStateProvider from './app-state/app-state.provider';
+import AppStateProvider from './app-state/app-state.provider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <GlobalStateProvider>
+    <AppStateProvider>
       <App />
-    </GlobalStateProvider>
+    </AppStateProvider>
   </React.StrictMode>
 );
 

@@ -7,7 +7,7 @@ import { Vector2d } from "konva/lib/types";
 import { KonvaEventObject } from "konva/lib/Node";
 import { clamp } from "../utils/calc.utils";
 
-export default function GlobalStateProvider({ children }: { children?: React.ReactNode }) {
+export default function AppStateProvider({ children }: { children?: React.ReactNode }) {
 
   // Map
   const [map, setMap] = useState<Hexmap>(defaultAppState.map)
