@@ -4,11 +4,12 @@ import { useTimer } from "../../../hooks/use-timer";
 import { getComputedHoneycombCoords } from "../../../utils/honeycomb.util";
 import { useContext } from "react";
 import { AppContext } from "../../../app-state/app-state.model";
+import { clamp } from "../../../utils/calc.utils";
 
 export default function ToolIndicator() {
   const time = useTimer(100)
   // move brush size, zoom etc to global state ?
-  const { brush } = useContext(AppContext)
+  const { brush, zoom } = useContext(AppContext)
   if (!brush.hoveredHex) {
     return <></>
   }
@@ -22,7 +23,7 @@ export default function ToolIndicator() {
       <Line
         points={points}
         stroke={'blue'}
-        strokeWidth={5}
+        strokeWidth={clamp(5 / zoom.x, 5, 15)}
         dash={[15, 10]}
         dashOffset={time}
         closed={true}
