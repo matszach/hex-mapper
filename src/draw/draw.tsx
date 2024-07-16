@@ -2,17 +2,19 @@ import Konva from "konva";
 import { HexmapField } from "../app-state/hexmap.model";
 import { AppState } from "../app-state/app-state.model";
 import { BrushType } from "../app-state/brush.model";
+import { honeycombAround, primaryDown, safeHex } from "./draw.tool";
 
 export class Draw {
 
   static onEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, updateMap, brush, updateBrush }: AppState) {
     updateBrush({ hoveredHex: hex })
-    const field = map.fields[hex.x][hex.y]
-    if (field && e.evt.buttons === 1) {
-      if (brush.type === BrushType.COLOR) {
-        field.fill = brush.value
-        updateMap(map)
-      }
+    if (primaryDown(e)) {
+      honeycombAround(hex, brush.size).forEach(hex => {
+        if (brush.type === BrushType.COLOR) {
+          safeHex(map, hex, {}).fill = brush.value
+        }
+      })
+      updateMap(map)
     }
   }
 
