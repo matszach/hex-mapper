@@ -14,12 +14,11 @@ Konva.dragButtons = [2]
 
 export default function CanvasComponent() {
   const size = useWindowSize()
-  const [zoom, setZoom] = useZoom({ rate: 1.2, max: 5, min: 0.25 })
-  const { map } = useContext(AppContext)
+  const { map, zoom, handleZoom } = useContext(AppContext)
   return (
     <Stage
       width={size.width} height={size.height} 
-      onWheel={setZoom} scale={zoom}
+      onWheel={handleZoom} scale={zoom}
       draggable
       onContextMenu={prevent}
       offset={STAGE_OFFSET}

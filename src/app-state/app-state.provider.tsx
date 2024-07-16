@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { AppContext, AppState, defaultAppState } from "./app-state.model";
 import { Hexmap } from "./hexmap.model";
-import { MAX_HISTORY_SIZE } from "../const/config";
+import { MAX_HISTORY_SIZE, ZOOM } from "../const/config";
 import { Brush } from "./brush.model";
+import { Vector2d } from "konva/lib/types";
+import { KonvaEventObject } from "konva/lib/Node";
+import { clamp } from "../utils/calc.utils";
 
 export default function GlobalStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -36,10 +39,19 @@ export default function GlobalStateProvider({ children }: { children?: React.Rea
     setBrush({ ...brush, ...newBrush })
   }
 
+  // Zoom
+  const [zoom, setZoom] = useState<Vector2d>(defaultAppState.zoom)
+  const handleZoom = (e: KonvaEventObject<WheelEvent>) => {
+    let z = e.evt.deltaY > 0 ? zoom.x / ZOOM.RATE : zoom.x * ZOOM.RATE
+    z = clamp(z, ZOOM.MIN, ZOOM.MAX)
+    setZoom({ x: z, y: z })
+  }
+
   const appState: AppState = {
     map, updateMap,
     history, pushHistory, undoHistory,
-    brush, updateBrush
+    brush, updateBrush,
+    zoom, handleZoom
   }
 
   return (
