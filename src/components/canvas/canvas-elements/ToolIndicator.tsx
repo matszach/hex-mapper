@@ -7,6 +7,7 @@ import { getComputedHoneycombCoords } from "../../../utils/honeycomb.util";
 
 export default function ToolIndicator() {
   const time = useTimer(100)
+  // move brush size, zoom etc to global state ?
   const { hoveredHex: hex, brushSize } = useMousemove(() => DrawHandler.getInstance())
   if (!hex) {
     return <></>
@@ -14,14 +15,15 @@ export default function ToolIndicator() {
   const { x, y } = hex
   const baseX = x * (FIELD_SIZE * X_RATIO + X_OFFSET)
   const baseY = y * FIELD_SIZE * Y_RATIO  + (x % 2 === 0 ? FIELD_SIZE * Y_RATIO / 2 : 0)
-  const points = getComputedHoneycombCoords(brushSize).reduce((acc, [px, py]) => ([...acc, px * FIELD_SIZE + baseX, py * FIELD_SIZE + baseY]), [] as number[])
+  const points = getComputedHoneycombCoords(brushSize)
+    .reduce((acc, [px, py]) => ([...acc, px * FIELD_SIZE + baseX, py * FIELD_SIZE + baseY]), [] as number[])
   return (
     <>
       <Line
         points={points}
         stroke={'blue'}
         strokeWidth={5}
-        dash={[10, 5]}
+        dash={[15, 10]}
         dashOffset={time}
         closed={true}
       >

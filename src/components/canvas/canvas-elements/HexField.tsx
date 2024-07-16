@@ -10,6 +10,7 @@ export interface HexFieldProps extends HexmapField { }
 export default function HexField(props: HexFieldProps) {
   const draw: DrawHandler = DrawHandler.getInstance()
   const { state, update } = useContext(GlobalContext)
+  // TODO draw.inject({ state, update })
   return (
     <Hex
       x={props.x * (FIELD_SIZE * X_RATIO + X_OFFSET)}

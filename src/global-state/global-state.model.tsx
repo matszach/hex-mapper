@@ -15,6 +15,8 @@ export const defaultGlobalState: GlobalState = {
 }
 
 export interface AppState {
+  // TODO change this so taht there's hexmap state, tools state, etc - each with own update fn
+  // draw handler could get the relevant state and update fn set in a component
   state: GlobalState,
   update: (newState: Partial<GlobalState>) => void
 }
