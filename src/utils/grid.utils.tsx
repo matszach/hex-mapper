@@ -1,4 +1,4 @@
-import { HexmapField } from "../global-state/hexmap.model";
+import { HexmapField } from "../app-state/hexmap.model";
 
 export function generateEmptyGrid(xSize: number, ySize: number): HexmapField[][] {
   const fields: HexmapField[][] = [] as HexmapField[][]

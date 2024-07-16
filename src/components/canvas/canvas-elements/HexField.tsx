@@ -1,15 +1,15 @@
 import Hex from "./Hex"
 import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
-import { HexmapField } from "../../../global-state/hexmap.model"
+import { HexmapField } from "../../../app-state/hexmap.model"
 import { DrawHandler } from "../../../drawing-tools/draw-handler"
-import { AppContext } from "../../../global-state/global-state.model"
+import { AppContext } from "../../../app-state/app-state.model"
 import { useContext } from "react"
 
 export interface HexFieldProps extends HexmapField { }
 
 export default function HexField(props: HexFieldProps) {
   const draw: DrawHandler = DrawHandler.getInstance()
-  const { state, update } = useContext(AppContext)
+  const context = useContext(AppContext)
   return (
     <Hex
       x={props.x * (FIELD_SIZE * X_RATIO + X_OFFSET)}
@@ -19,10 +19,10 @@ export default function HexField(props: HexFieldProps) {
       stroke={"black"}
       strokeWidth={1}
       // zIndex={0}
-      onMouseEnter={e => draw.onMouseEnterHex(e, props, state, update)}
-      onMouseLeave={e => draw.onMouseLeaveHex(e, props, state, update)}
-      onMouseDown={e => draw.onMouseDownHex(e, props, state, update)}
-      onMouseUp={e => draw.onMouseUpHex(e, props, state, update)}
+      onMouseEnter={e => draw.onMouseEnterHex(e, props, context)}
+      onMouseLeave={e => draw.onMouseLeaveHex(e, props, context)}
+      onMouseDown={e => draw.onMouseDownHex(e, props, context)}
+      onMouseUp={e => draw.onMouseUpHex(e, props, context)}
     ></Hex>
   )
 }

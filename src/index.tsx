@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GlobalStateProvider from './global-state/global-state.provider';
+import GlobalStateProvider from './app-state/app-state.provider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

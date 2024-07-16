@@ -5,7 +5,7 @@ import { useWindowSize } from 'usehooks-ts';
 import { useZoom } from '../../hooks/use-zoom';
 import Konva from 'konva';
 import { useContext } from 'react';
-import { AppContext } from '../../global-state/global-state.model';
+import { AppContext } from '../../app-state/app-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
 import ToolIndicator from './canvas-elements/ToolIndicator';
@@ -15,7 +15,7 @@ Konva.dragButtons = [2]
 export default function CanvasComponent() {
   const size = useWindowSize()
   const [zoom, setZoom] = useZoom({ rate: 1.2, max: 5, min: 0.25 })
-  const { state } = useContext(AppContext)
+  const { map } = useContext(AppContext)
   return (
     <Stage
       width={size.width} height={size.height} 
@@ -25,7 +25,7 @@ export default function CanvasComponent() {
       offset={STAGE_OFFSET}
     >
       <Layer> 
-        {state?.hexmap?.fields.map(row => (
+        {map?.fields.map(row => (
           row.map(field => (
             <HexField key={`${field.x}-${field.y}`} {...field} />
           ))
