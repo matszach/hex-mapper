@@ -7,7 +7,7 @@ import { AppContext } from "../../../app-state/app-state.model";
 import { clamp } from "../../../utils/calc.utils";
 
 export default function ToolIndicator() {
-  const time = useTimer(100)
+  const time = useTimer(50)
   // move brush size, zoom etc to global state ?
   const { brush, zoom } = useContext(AppContext)
   if (!brush.hoveredHex) {
@@ -24,7 +24,7 @@ export default function ToolIndicator() {
         points={points}
         stroke={'blue'}
         strokeWidth={clamp(5 / zoom.x, 5, 15)}
-        dash={[15, 10]}
+        dash={[20, 15]}
         dashOffset={time}
         closed={true}
       >
