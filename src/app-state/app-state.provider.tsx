@@ -1,7 +1,8 @@
 import { useState } from "react";
-import {  AppContext, AppState, defaultAppState } from "./app-state.model";
+import { AppContext, AppState, defaultAppState } from "./app-state.model";
 import { Hexmap } from "./hexmap.model";
 import { MAX_HISTORY_SIZE } from "../const/config";
+import { Brush } from "./brush.model";
 
 export default function GlobalStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -27,10 +28,18 @@ export default function GlobalStateProvider({ children }: { children?: React.Rea
       setHistory(history.slice(0, -1))
     }
   }
+  
+  // Brush
+  const [brush, setBrush] = useState<Brush>(defaultAppState.brush)
+
+  const updateBrush = (newBrush: Partial<Brush>) => {
+    setBrush({ ...brush, ...newBrush })
+  }
 
   const appState: AppState = {
     map, updateMap,
     history, pushHistory, undoHistory,
+    brush, updateBrush
   }
 
   return (

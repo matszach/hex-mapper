@@ -1,6 +1,7 @@
 import { createContext } from "react"
 import { Hexmap } from "./hexmap.model"
 import { generateEmptyGrid } from "../utils/grid.utils"
+import { Brush, BrushType } from "./brush.model"
 
 export interface AppState {
   map: Hexmap,
@@ -8,6 +9,8 @@ export interface AppState {
   history: Hexmap[]
   pushHistory: (newMap: Hexmap) => void
   undoHistory: () => void
+  brush: Brush,
+  updateBrush: (newBrush: Partial<Brush>) => void
 }
 
 export const defaultAppState: AppState = {
@@ -18,6 +21,13 @@ export const defaultAppState: AppState = {
   history: [],
   pushHistory: () => {},
   undoHistory: () => {},
+  brush: {
+    size: 1,
+    type: BrushType.COLOR,
+    value: "#000000",
+    hoveredHex: null
+  },
+  updateBrush: () => {},
 }
 
 export const AppContext = createContext<AppState>(defaultAppState)

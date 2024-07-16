@@ -8,7 +8,6 @@ import { useContext } from "react"
 export interface HexFieldProps extends HexmapField { }
 
 export default function HexField(props: HexFieldProps) {
-  const draw: DrawHandler = DrawHandler.getInstance()
   const context = useContext(AppContext)
   return (
     <Hex
@@ -19,10 +18,10 @@ export default function HexField(props: HexFieldProps) {
       stroke={"black"}
       strokeWidth={1}
       // zIndex={0}
-      onMouseEnter={e => draw.onMouseEnterHex(e, props, context)}
-      onMouseLeave={e => draw.onMouseLeaveHex(e, props, context)}
-      onMouseDown={e => draw.onMouseDownHex(e, props, context)}
-      onMouseUp={e => draw.onMouseUpHex(e, props, context)}
+      onMouseEnter={e => DrawHandler.onMouseEnterHex(e, props, context)}
+      onMouseLeave={e => DrawHandler.onMouseLeaveHex(e, props, context)}
+      onMouseDown={e => DrawHandler.onMouseDownHex(e, props, context)}
+      onMouseUp={e => DrawHandler.onMouseUpHex(e, props, context)}
     ></Hex>
   )
 }

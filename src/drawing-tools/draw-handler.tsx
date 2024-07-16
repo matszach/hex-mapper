@@ -1,54 +1,34 @@
 import Konva from "konva";
-import { Tool } from "./tools";
 import { HexmapField } from "../app-state/hexmap.model";
 import { AppState } from "../app-state/app-state.model";
-import { randomColor } from "../utils/mock.util";
+import { BrushType } from "../app-state/brush.model";
 
 export class DrawHandler {
 
-  private tool: Tool = new Tool()
-
-  // if these are in gloval state then all drawhandler methods can be static
-  public hoveredHex: HexmapField | null = null
-  public brushSize: number = 1
-
-  static instance: DrawHandler
-
-  static getInstance() {
-    if (!DrawHandler.instance) {
-      DrawHandler.instance = new DrawHandler()
-    }
-    return DrawHandler.instance
-  }
-
-  private constructor() { }
-
-  setTool(tool: Tool) {
-    this.tool = tool
-  }
-
-  onMouseEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, updateMap }: AppState) {
-    this.hoveredHex = hex
+  static onMouseEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, updateMap, brush, updateBrush }: AppState) {
+    updateBrush({ hoveredHex: hex })
     // TODO remove the global state and make events for stuff like create new mape etc ?
     // TODO make the hexmap and array of arrays
     const field = map.fields[hex.x][hex.y]
     if (field && e.evt.buttons === 1) {
-      field.fill = randomColor()
-      updateMap(map)
+      if (brush.type === BrushType.COLOR) {
+        field.fill = brush.value
+        updateMap(map)
+      }
     }
     // this.tool.onMouseEnterHex(e, hex, state, update)
   }
 
-  onMouseLeaveHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+  static onMouseLeaveHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
     // this.hoveredHex = null // this causes stutter
     // this.tool.onMouseLeaveHex(e, hex, state, update)
   }
 
-  onMouseDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+  static onMouseDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
     // this.tool.onMouseDownHex(e, hex, state, update)
   }
 
-  onMouseUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+  static onMouseUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
     // this.tool.onMouseUpHex(e, hex, state, update)
   }
 
