@@ -2,7 +2,6 @@ import { Stage, Layer } from 'react-konva';
 import './CanvasComponent.scss';
 import HexField from './canvas-elements/HexField';
 import { useWindowSize } from 'usehooks-ts';
-import { useZoom } from '../../hooks/use-zoom';
 import Konva from 'konva';
 import { useContext } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
