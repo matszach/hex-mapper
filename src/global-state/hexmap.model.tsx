@@ -7,5 +7,5 @@ export interface HexmapField {
 }
 
 export interface Hexmap {
-  fields: HexmapField[]
+  fields: HexmapField[][]
 }

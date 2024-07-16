@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { defaultGlobalState, GlobalContext, GlobalState } from "./global-state.model";
+import { defaultGlobalState, AppContext, GlobalState } from "./global-state.model";
 
 export default function GlobalStateProvider({ children }: { children?: React.ReactNode }) {
   const [state, setState] = useState<GlobalState>(defaultGlobalState)
@@ -8,8 +8,8 @@ export default function GlobalStateProvider({ children }: { children?: React.Rea
     // could store previous 10 states, expose undo/redo methods - probably not on update but on mouseUp though
   }
   return (
-    <GlobalContext.Provider value={{ state, update }}>
+    <AppContext.Provider value={{ state, update }}>
       {children}
-    </GlobalContext.Provider>
+    </AppContext.Provider>
   )
 }

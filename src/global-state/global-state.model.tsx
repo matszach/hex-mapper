@@ -1,22 +1,20 @@
 import { createContext } from "react"
 import { Hexmap } from "./hexmap.model"
-import { gridCoords } from "../utils/calc.utils"
+import { generateEmptyGrid } from "../utils/grid.utils"
 
 export interface GlobalState {
   hexmap: Hexmap,
-  hexmapHistory: Hexmap[]
+  history: Hexmap[]
 }
 
 export const defaultGlobalState: GlobalState = {
   hexmap: {
-    fields: gridCoords(50, 30).map(([x, y]) => ({ x, y }))
+    fields: generateEmptyGrid(50, 30)
   },
-  hexmapHistory: []
+  history: []
 }
 
 export interface AppState {
-  // TODO change this so taht there's hexmap state, tools state, etc - each with own update fn
-  // draw handler could get the relevant state and update fn set in a component
   state: GlobalState,
   update: (newState: Partial<GlobalState>) => void
 }
@@ -26,4 +24,4 @@ export const defaultAppState: AppState = {
   update: () => {}
 }
 
-export const GlobalContext = createContext<AppState>(defaultAppState)
+export const AppContext = createContext<AppState>(defaultAppState)

@@ -2,15 +2,14 @@ import Hex from "./Hex"
 import { FIELD_SIZE, X_OFFSET, X_RATIO, Y_RATIO } from "../../../const/sizes"
 import { HexmapField } from "../../../global-state/hexmap.model"
 import { DrawHandler } from "../../../drawing-tools/draw-handler"
-import { GlobalContext } from "../../../global-state/global-state.model"
+import { AppContext } from "../../../global-state/global-state.model"
 import { useContext } from "react"
 
 export interface HexFieldProps extends HexmapField { }
 
 export default function HexField(props: HexFieldProps) {
   const draw: DrawHandler = DrawHandler.getInstance()
-  const { state, update } = useContext(GlobalContext)
-  // TODO draw.inject({ state, update })
+  const { state, update } = useContext(AppContext)
   return (
     <Hex
       x={props.x * (FIELD_SIZE * X_RATIO + X_OFFSET)}

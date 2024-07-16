@@ -8,6 +8,7 @@ export class DrawHandler {
 
   private tool: Tool = new Tool()
 
+  // if these are in gloval state then all drawhandler methods can be static
   public hoveredHex: HexmapField | null = null
   public brushSize: number = 1
 
@@ -30,7 +31,7 @@ export class DrawHandler {
     this.hoveredHex = hex
     // TODO remove the global state and make events for stuff like create new mape etc ?
     // TODO make the hexmap and array of arrays
-    const field = state.hexmap.fields.find(f => f.x === hex.x && f.y === hex.y) 
+    const field = state.hexmap.fields[hex.x][hex.y]
     if (field && e.evt.buttons === 1) {
       field.fill = randomColor()
       update({ hexmap: state.hexmap })

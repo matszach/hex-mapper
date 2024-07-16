@@ -21,16 +21,6 @@ export function batchMap<T = any, R = any>(array: T[], size: number, callback: (
   return chunk(array, size, true).reduce((acc, curr) => [...acc, ...callback(curr)], [] as R[])
 }
 
-export function gridCoords(x: number, y: number): [number, number][] {
-  const coords = []
-  for (let i = 0; i < x; i++) {
-    for (let j = 0; j < y; j++) {
-      coords.push([i, j] as [number, number])
-    }
-  }
-  return coords
-}
-
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
