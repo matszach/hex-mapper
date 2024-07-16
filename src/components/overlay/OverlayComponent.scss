@@ -3,13 +3,22 @@
   pointer-events: none;
   z-index: 1000;
   &__nav, &__aside {
-    filter: drop-shadow(0 0 0.25rem gray);
+    // filter: drop-shadow(0 0 1.25rem gray);
     pointer-events: all;
   }
   &__nav {
-    background-color: darkgray;
+    background-color: #ddd;
+    border-bottom: 1px solid #bbb;
   }
   &__aside {
-    background-color: lightgray;
+    background-color: #eee;
+    border-right: 1px solid #bbb;
+    &__inset {
+      $inset: 10px;
+      width: calc(100% - 2 * #{$inset});
+      height: calc(100% - 2 * #{$inset});
+      margin: auto;
+      padding-top: $inset;
+    }
   }
 }
