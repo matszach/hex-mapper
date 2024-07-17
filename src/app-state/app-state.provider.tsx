@@ -7,7 +7,6 @@ import { Vector2d } from "konva/lib/types";
 import { KonvaEventObject } from "konva/lib/Node";
 import { clamp } from "../utils/calc.utils";
 import { clone } from "../draw/draw.tool";
-import { timeStamp } from "console";
 
 export default function AppStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -30,6 +29,7 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
   }
 
   const undoHistory = () => {
+    // TODO here's bug that sometimes unding rolls back to original state
     const prev = history.pop()
     if (prev) {
       updateMap({ ...prev })
@@ -52,11 +52,20 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
     setZoom({ x: z, y: z })
   }
 
+  // Palette
+  const [palette, setPalette] = useState<string[]>(defaultAppState.palette)
+
+  const updatePalette = (newPalette: string[]) => {
+    setPalette([...newPalette])
+  }
+
+  // State 
   const appState: AppState = {
     map, updateMap,
     history, saveHistory, undoHistory,
     brush, updateBrush,
-    zoom, handleZoom
+    zoom, handleZoom,
+    palette, updatePalette
   }
 
   return (

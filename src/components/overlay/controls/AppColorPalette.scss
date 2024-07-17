@@ -1,0 +1,23 @@
+.AppColorPalette {
+  width: 100%;
+  &__palette {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    &__color {
+      width: 35.5px;
+      height: 35.5px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      &--selected {
+        border: 2px solid black;
+      }
+    }
+  }
+}
