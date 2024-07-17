@@ -14,11 +14,15 @@ export function safeHex(map: Hexmap, { x, y }: HexmapField, defaultHex: Partial<
 
 export function honeycombAround(hex: HexmapField, size: number): HexmapField[] {
   const fields: HexmapField[] = []
-  // TODO needs to match the shape
   for (let ix = 0; ix < size; ix++) {
-    for (let iy = 0; iy < size; iy++) {
+    const cut = Math.abs(ix - Math.floor(size/2))
+    let shift = Math.floor(cut/2)
+    if (hex.x % 2 === 0 && (Math.floor(size/2) % 2) !== (ix % 2)) {
+      shift += 1
+    }
+    for (let iy = 0; iy < size - cut; iy++) {
       const x = hex.x + ix - Math.floor(size / 2)
-      const y = hex.y + iy - Math.floor(size / 2)
+      const y = hex.y + iy - Math.floor(size / 2) + shift
       fields.push({ x, y })
     }
   }
