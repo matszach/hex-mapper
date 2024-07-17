@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './AppColorPalette.scss'
+import { Form } from 'react-bootstrap'
 
 export interface AppColorPaletteProps {
   className?: string,
@@ -9,16 +10,25 @@ export interface AppColorPaletteProps {
   onChange: (value: string) => void
 }
 
-export default function AppColorPalette({ className, palette, onEdit, value, onChange }: AppColorPaletteProps) {
-  const [index, setIndex] = useState(palette.indexOf(value) ?? 0)
+export default function AppColorPalette({ className, palette: palette, onEdit, value, onChange }: AppColorPaletteProps) {
+  const [localPalette, setLocalPalette] = useState(palette)
+  const [index, setIndex] = useState(localPalette.indexOf(value) ?? 0)
+  
   const colorChange = (i: number) => {
     setIndex(i)
-    onChange(palette[i])
+    onChange(localPalette[i])
   }
+
+  // const colorUpdate = (i: number, color: string) => {
+  //   const newPalette = [...localPalette]
+  //   newPalette[i] = color
+  //   setLocalPalette(newPalette)
+  // }
+
   return (
     <div className={`AppColorPalette ${className}`}>
       <div className="AppColorPalette__palette">
-        {palette.map((color, i) => (
+        {localPalette.map((color, i) => (
           <div
             key={i}
             className={`AppColorPalette__palette__color ${i === index ? 'AppColorPalette__palette__color--selected' : ''}`}
@@ -26,7 +36,19 @@ export default function AppColorPalette({ className, palette, onEdit, value, onC
             onClick={() => colorChange(i)}
           />
         ))}
-      </div> 
+      </div>
+      {/* TODO */}
+      {/* <Form.Control 
+        type="color" 
+        value={localPalette[index]}
+        onChange={e => 
+          colorUpdate(index, e.target.value)
+        } 
+        onBlur={e => {
+          onEdit(localPalette)
+          onChange(e.target.value)
+        }}
+      /> */}
     </div>
   )
 }
