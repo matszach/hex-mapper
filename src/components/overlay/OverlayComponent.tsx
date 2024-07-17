@@ -5,7 +5,6 @@ import { AppContext } from '../../app-state/app-state.model';
 import AppSelect from './controls/AppSelect';
 import { Button } from 'react-bootstrap';
 import AppColorPalette from './controls/AppColorPalette';
-import { BrushType } from '../../app-state/brush.model';
 
 export default function OverlayComponent() {
   const { brush, updateBrush, undoHistory, palette, updatePalette } = useContext(AppContext)
@@ -27,8 +26,8 @@ export default function OverlayComponent() {
             className='mb-2'
             palette={palette}
             onEdit={updatePalette}
-            value={brush.value}
-            onChange={e => updateBrush({ value: e, type: BrushType.COLOR })}
+            value={brush.color}
+            onChange={e => updateBrush({ color: e })}
           />
           <Button onClick={undoHistory}>Undo</Button>
         </div>

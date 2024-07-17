@@ -41,9 +41,8 @@ export const defaultAppState: AppState = {
   undoHistory: () => {},
   brush: {
     size: 1,
-    type: BrushType.COLOR,
-    value: DEFAULT_PALETTE[0],
-    hoveredHex: null
+    type: BrushType.FILL,
+    color: DEFAULT_PALETTE[0]
   },
   updateBrush: () => {},
   zoom: { x: 1, y: 1 },

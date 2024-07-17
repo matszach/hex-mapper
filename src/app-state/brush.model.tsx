@@ -3,12 +3,13 @@ import { HexmapField } from "./hexmap.model"
 export interface Brush {
   size: number,
   type: BrushType,
-  value: string // color hex, pattern icon/key
-  hoveredHex: HexmapField | null
+  color: string,
+  key?: string,
+  hoveredHex?: HexmapField
 }
 
 export enum BrushType {
-  COLOR,
+  FILL,
   PATTERN,
   ICON
 }

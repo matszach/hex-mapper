@@ -10,8 +10,8 @@ export class Draw {
     if (!primaryDown(e)) {
       return
     }
-    if (brush.type === BrushType.COLOR) {
-      honeycombAround(hex, brush.size).forEach(hex => safeHex(map, hex, {}).fill = brush.value)
+    if (brush.type === BrushType.FILL) {
+      honeycombAround(hex, brush.size).forEach(hex => safeHex(map, hex, {}).fill = brush.color)
     }
     updateMap(map)
   }
@@ -31,7 +31,7 @@ export class Draw {
   }
 
   static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
-    
+
   }
 
   static onEnterCanvas(e: Konva.KonvaEventObject<MouseEvent>, state: AppState) {
@@ -39,7 +39,7 @@ export class Draw {
   }
 
   static onLeaveCanvas(e: Konva.KonvaEventObject<MouseEvent>, { updateBrush }: AppState) {
-    updateBrush({ hoveredHex: null })
+    updateBrush({ hoveredHex: undefined })
   }
 
 }
