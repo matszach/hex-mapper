@@ -27,7 +27,7 @@ export default function OverlayComponent() {
             className='mb-2' 
             label='Brush type' 
             value={BrushType[brush.type]} 
-            options={['FILL', 'PATTERN', 'ICON']} 
+            options={['FILL', 'PATTERN', 'ICON', 'LINE', 'TEXT']} 
             onChange={e => updateBrush({ type: BrushType[e as keyof typeof BrushType] })} 
           />
           {/* to depend on brush type */}

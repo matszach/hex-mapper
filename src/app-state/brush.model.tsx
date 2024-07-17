@@ -11,5 +11,7 @@ export interface Brush {
 export enum BrushType {
   FILL,
   PATTERN,
-  ICON
+  ICON,
+  LINE,
+  TEXT
 }
