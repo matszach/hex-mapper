@@ -27,6 +27,7 @@ export default function AppColorPalette({ className, palette: palette, onEdit, v
   return (
     <div className={`AppColorPalette ${className}`}>
       <div className="AppColorPalette__palette">
+        <label className="AppColorPalette__palette__label">Color</label>
         {localPalette.map((color, i) => (
           <div
             key={i}

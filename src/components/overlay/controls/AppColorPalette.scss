@@ -1,6 +1,13 @@
 .AppColorPalette {
   width: 100%;
   &__palette {
+    &__label {
+      color: #666;
+      margin-left: 6px;
+      margin-bottom: 2px;
+      font-size: 15px;
+      width: 100%;
+    }
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
