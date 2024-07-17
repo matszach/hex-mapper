@@ -9,7 +9,7 @@ export interface AppState {
   map: Hexmap,
   updateMap: (newMap: Hexmap) => void
   history: Hexmap[]
-  pushHistory: (newMap: Hexmap) => void
+  saveHistory: () => void
   undoHistory: () => void
   brush: Brush,
   updateBrush: (newBrush: Partial<Brush>) => void
@@ -23,7 +23,7 @@ export const defaultAppState: AppState = {
   },
   updateMap: () => {},
   history: [],
-  pushHistory: () => {},
+  saveHistory: () => {},
   undoHistory: () => {},
   brush: {
     size: 1,

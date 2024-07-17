@@ -1,4 +1,4 @@
-export const MAX_HISTORY_SIZE = 10
+export const MAX_HISTORY_SIZE = 20
 export const ZOOM = {
   RATE: 1.2,
   MAX: 5,

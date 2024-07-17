@@ -6,6 +6,8 @@ import { Brush } from "./brush.model";
 import { Vector2d } from "konva/lib/types";
 import { KonvaEventObject } from "konva/lib/Node";
 import { clamp } from "../utils/calc.utils";
+import { clone } from "../draw/draw.tool";
+import { timeStamp } from "console";
 
 export default function AppStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -19,15 +21,15 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
   // History
   const [history, setHistory] = useState<Hexmap[]>([defaultAppState.map])
 
-  const pushHistory = (newMap: Hexmap) => {
-    newMap.timestamp = Date.now()
+  const saveHistory = () => {
+    const copy = clone(map)
+    copy.timestamp = Date.now()
     const limit = MAX_HISTORY_SIZE - 1
     const toKeep = history.length > limit ? history.slice(-limit) : history
-    setHistory([...toKeep, newMap])
+    setHistory([...toKeep, copy])
   }
 
   const undoHistory = () => {
-    // TODO - doenst work yet
     const prev = history.pop()
     if (prev) {
       updateMap({ ...prev })
@@ -52,7 +54,7 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
 
   const appState: AppState = {
     map, updateMap,
-    history, pushHistory, undoHistory,
+    history, saveHistory, undoHistory,
     brush, updateBrush,
     zoom, handleZoom
   }

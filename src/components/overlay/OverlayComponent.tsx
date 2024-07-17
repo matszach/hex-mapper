@@ -21,7 +21,7 @@ export default function OverlayComponent() {
             options={[1, 3, 5, 7, 9, 11, 13, 15]} 
             onChange={e => updateBrush({ size: Number(e) })} 
           />
-          <Button onClick={undoHistory}>Undo (WIP)</Button>
+          <Button onClick={undoHistory}>Undo</Button>
         </div>
       </aside>
     </div>

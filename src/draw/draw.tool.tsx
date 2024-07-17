@@ -24,3 +24,7 @@ export function honeycombAround(hex: HexmapField, size: number): HexmapField[] {
   }
   return fields
 }
+
+export function clone(obj: any) {
+  return JSON.parse(JSON.stringify(obj))
+}
