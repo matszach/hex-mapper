@@ -30,6 +30,7 @@ export default function OverlayComponent() {
             options={['FILL', 'PATTERN', 'ICON']} 
             onChange={e => updateBrush({ type: BrushType[e as keyof typeof BrushType] })} 
           />
+          {/* to depend on brush type */}
           <AppSelect
             className='mb-2' 
             label='Brush size' 
