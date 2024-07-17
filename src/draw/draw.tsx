@@ -19,14 +19,14 @@ export class Draw {
   }
 
   static onLeaveHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
-    // this.hoveredHex = null // this causes stutter
+
   }
 
-  static onDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
-  }
-
-  static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, pushHistory }: AppState) {
+  static onDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, pushHistory }: AppState) {
     pushHistory(map)
+  }
+
+  static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
   }
 
   static onEnterCanvas(e: Konva.KonvaEventObject<MouseEvent>, state: AppState) {

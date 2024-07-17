@@ -7,5 +7,6 @@ export interface HexmapField {
 }
 
 export interface Hexmap {
+  timestamp?: number,
   fields: HexmapField[][]
 }
