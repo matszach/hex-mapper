@@ -6,7 +6,6 @@ import { Brush } from "./brush.model";
 import { Vector2d } from "konva/lib/types";
 import { KonvaEventObject } from "konva/lib/Node";
 import { clamp } from "../utils/calc.utils";
-import { generateEmptyGrid } from "../utils/grid.utils";
 
 export default function AppStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -14,7 +13,6 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
   const [map, setMap] = useState<Hexmap>(defaultAppState.map)
 
   const updateMap = (newMap: Hexmap) => {
-    console.log({ newMap })
     setMap({ ...newMap })
   }
 
