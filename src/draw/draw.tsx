@@ -7,14 +7,13 @@ import { honeycombAround, primaryDown, safeHex } from "./draw.tool";
 export class Draw {
 
   private static drawHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, { map, brush, updateMap }: AppState) {
-    if (primaryDown(e)) {
-      honeycombAround(hex, brush.size).forEach(hex => {
-        if (brush.type === BrushType.COLOR) {
-          safeHex(map, hex, {}).fill = brush.value
-        }
-      })
-      updateMap(map)
+    if (!primaryDown(e)) {
+      return
     }
+    if (brush.type === BrushType.COLOR) {
+      honeycombAround(hex, brush.size).forEach(hex => safeHex(map, hex, {}).fill = brush.value)
+    }
+    updateMap(map)
   }
 
   static onEnterHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
@@ -32,6 +31,7 @@ export class Draw {
   }
 
   static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+    
   }
 
   static onEnterCanvas(e: Konva.KonvaEventObject<MouseEvent>, state: AppState) {
