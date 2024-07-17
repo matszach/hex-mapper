@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './AppColorPalette.scss'
-import { Form } from 'react-bootstrap'
 
 export interface AppColorPaletteProps {
   className?: string,
