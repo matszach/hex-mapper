@@ -11,7 +11,17 @@ export class Draw {
       return
     }
     if (brush.type === BrushType.FILL) {
-      honeycombAround(hex, brush.size).forEach(hex => safeHex(map, hex, {}).fill = brush.color)
+      honeycombAround(hex, brush.size).forEach(hex => {
+        safeHex(map, hex, {}).fill = brush.color
+      })
+    }
+    if (brush.type === BrushType.ICON) {
+      honeycombAround(hex, brush.size).forEach(hex => {
+        safeHex(map, hex, {}).icon = {
+          key: 'castle', // TODO brush.key!,
+          color: brush.color
+        }
+      })
     }
     updateMap(map)
   }

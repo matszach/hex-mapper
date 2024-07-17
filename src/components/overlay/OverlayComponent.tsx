@@ -16,13 +16,6 @@ export default function OverlayComponent() {
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
-          <AppColorPalette
-            className='mb-2'
-            palette={palette}
-            onEdit={updatePalette}
-            value={brush.color}
-            onChange={e => updateBrush({ color: e })}
-          />
           <AppSelect
             className='mb-2' 
             label='Brush type' 
@@ -37,6 +30,13 @@ export default function OverlayComponent() {
             value={brush.size} 
             options={[1, 3, 5, 7, 9, 11, 13, 15]} 
             onChange={e => updateBrush({ size: Number(e) })} 
+          />
+          <AppColorPalette
+            className='mb-2'
+            palette={palette}
+            onEdit={updatePalette}
+            value={brush.color}
+            onChange={e => updateBrush({ color: e })}
           />
           <Button onClick={undoHistory}>Undo</Button>
         </div>

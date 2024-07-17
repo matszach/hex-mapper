@@ -4,6 +4,8 @@ import { HexmapField } from "../../../app-state/hexmap.model"
 import { Draw } from "../../../draw/draw"
 import { AppContext } from "../../../app-state/app-state.model"
 import { useContext } from "react"
+import { Image } from "react-konva"
+import Icon from "./Icon"
 // import { Text } from "react-konva"
 
 export interface HexFieldProps extends HexmapField { }
@@ -27,6 +29,7 @@ export default function HexField(props: HexFieldProps) {
         onMouseDown={e => Draw.onDownHex(e, props, context)}
         onMouseUp={e => Draw.onUpHex(e, props, context)}
       ></Hex>
+      <Icon iconKey={props.icon?.key} x={xPos} y={yPos} color={props.icon?.color} />
       {/* <Text x={xPos - 10} y={yPos} fill={"black"} text={`${props.x}, ${props.y}`}></Text> */}
     </>
   )
