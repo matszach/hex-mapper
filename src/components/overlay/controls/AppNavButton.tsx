@@ -1,9 +1,14 @@
 import './AppNavButton.scss'
 
-export default function AppNavButton({ children, onClick }: { children: any, onClick: () => void }) {
+export interface AppNavButtonProps {
+  label: string
+  onClick: () => void
+}
+
+export default function AppNavButton({ label, onClick }: AppNavButtonProps) {
   return (
     <span className='AppNavButton' onClick={onClick}>
-      {children}
+      {label}
     </span>
   )
 }

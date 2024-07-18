@@ -8,6 +8,7 @@ import { BrushType } from '../../app-state/brush.model';
 import AppNavButton from './controls/AppNavButton';
 import { preloadIcon } from '../../hooks/use-icon';
 import { printMap } from '../../utils/print.utils';
+import AppNavSelect from './controls/AppNavSelect';
 
 export default function OverlayComponent() {
   const { brush, updateBrush, undoHistory, palette, updatePalette, printRef } = useContext(AppContext)
@@ -21,8 +22,13 @@ export default function OverlayComponent() {
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
-        <AppNavButton onClick={undoHistory}>Undo</AppNavButton>
-        <AppNavButton onClick={() => printMap(printRef)}>Export</AppNavButton>
+        <AppNavButton label='Undo' onClick={undoHistory}/>
+        <AppNavButton label='Export' onClick={() => printMap(printRef)}/>
+        <AppNavSelect 
+          label='Brush size'
+          value={brush.size} options={[1, 3, 5, 7, 9, 11, 13, 15].map(n => [n, `${n}x${n}`])} 
+          onChange={size => updateBrush({ size })}
+        />
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
@@ -34,14 +40,6 @@ export default function OverlayComponent() {
             options={['FILL', 'PATTERN', 'ICON', 'LINE', 'TEXT']} 
             onChange={e => updateBrush({ type: BrushType[e as keyof typeof BrushType] })} 
           />
-          {/* to depend on brush type */}
-          <AppSelect
-            className='mb-2' 
-            label='Brush size' 
-            value={brush.size} 
-            options={[1, 3, 5, 7, 9, 11, 13, 15]} 
-            onChange={e => updateBrush({ size: Number(e) })} 
-          />
           <AppColorPalette
             className='mb-2'
             palette={palette}
@@ -49,6 +47,7 @@ export default function OverlayComponent() {
             value={brush.color}
             onChange={e => updateBrush({ color: e })}
           />
+          {/* content to depend on brush type */}
         </div>
       </aside>
     </div>

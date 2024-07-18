@@ -1,0 +1,29 @@
+@import './app-nav.scss';
+
+.AppNavSelect {
+  @include nav-item;
+  position: relative;
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    transition-duration: 100ms;
+    height: 0;
+    overflow: hidden;
+    &--open {
+      height: auto;
+      background-color: #fff;
+      border: 1px solid #aaa;
+    }
+    &__item {
+      padding: 5px;
+      cursor: pointer;
+      transition-duration: 100ms;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}
