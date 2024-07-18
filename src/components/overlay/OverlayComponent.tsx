@@ -16,6 +16,7 @@ export default function OverlayComponent() {
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
+          {/* TODO replace by radio button like ? */}
           <AppSelect
             className='mb-2' 
             label='Brush type' 

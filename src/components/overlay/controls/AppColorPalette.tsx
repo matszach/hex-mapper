@@ -1,5 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './AppColorPalette.scss'
+import { Form } from 'react-bootstrap'
+import { useTimer } from '../../../hooks/use-timer'
+import { areEqual } from '../../../utils/calc.utils'
 
 export interface AppColorPaletteProps {
   className?: string,
@@ -9,20 +12,31 @@ export interface AppColorPaletteProps {
   onChange: (value: string) => void
 }
 
-export default function AppColorPalette({ className, palette: palette, onEdit, value, onChange }: AppColorPaletteProps) {
+export default function AppColorPalette({ className, palette, onEdit, value, onChange }: AppColorPaletteProps) {
   const [localPalette, setLocalPalette] = useState(palette)
-  const [index, setIndex] = useState(localPalette.indexOf(value) ?? 0)
-  
-  const colorChange = (i: number) => {
-    setIndex(i)
+  const [selectedIndex, setSelectedIndex] = useState(localPalette.indexOf(value) ?? 0)
+  const timer = useTimer(100)
+
+  const selectColor = (i: number) => {
+    setSelectedIndex(i)
     onChange(localPalette[i])
   }
 
-  // const colorUpdate = (i: number, color: string) => {
-  //   const newPalette = [...localPalette]
-  //   newPalette[i] = color
-  //   setLocalPalette(newPalette)
-  // }
+  const updateLocalPalette = (i: number, color: string) => {
+    const newPalette = [...localPalette]
+    newPalette[i] = color
+    setLocalPalette(newPalette)
+  }
+
+  const emitPaletteUpdate = () => {
+    if (!areEqual(palette, localPalette)) {
+      onChange(localPalette[selectedIndex])
+      onEdit(localPalette)
+    }
+  }
+
+  // workaround for the "no event on mouse up on colorpicker" issue
+  useEffect(emitPaletteUpdate, [timer])
 
   return (
     <div className={`AppColorPalette ${className}`}>
@@ -31,24 +45,20 @@ export default function AppColorPalette({ className, palette: palette, onEdit, v
         {localPalette.map((color, i) => (
           <div
             key={i}
-            className={`AppColorPalette__palette__color ${i === index ? 'AppColorPalette__palette__color--selected' : ''}`}
+            className={`AppColorPalette__palette__color ${i === selectedIndex ? 'AppColorPalette__palette__color--selected' : ''}`}
             style={{ backgroundColor: color }}
-            onClick={() => colorChange(i)}
+            onClick={() => selectColor(i)}
           />
         ))}
+        <Form.Control 
+          className='w-100 mt-1'
+          type="color" 
+          value={localPalette[selectedIndex]}
+          onChange={e => updateLocalPalette(selectedIndex, e.target.value)} 
+          onBlur={emitPaletteUpdate}
+        />
       </div>
-      {/* TODO */}
-      {/* <Form.Control 
-        type="color" 
-        value={localPalette[index]}
-        onChange={e => 
-          colorUpdate(index, e.target.value)
-        } 
-        onBlur={e => {
-          onEdit(localPalette)
-          onChange(e.target.value)
-        }}
-      /> */}
+      
     </div>
   )
 }

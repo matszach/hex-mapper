@@ -24,3 +24,15 @@ export function batchMap<T = any, R = any>(array: T[], size: number, callback: (
 export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
+
+export function areEqual(arr1: any[], arr2: any[]): boolean {
+  if (arr1.length !== arr2.length) {
+    return false
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false
+    }
+  }
+  return true
+}
