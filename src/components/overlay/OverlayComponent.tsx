@@ -25,9 +25,8 @@ export default function OverlayComponent() {
         <AppNavButton label='Undo' onClick={undoHistory}/>
         <AppNavButton label='Export' onClick={() => printMap(printRef)}/>
         <AppNavSelect 
-          label='Brush size'
-          value={brush.size} options={[1, 3, 5, 7, 9, 11, 13, 15].map(n => [n, `${n}x${n}`])} 
-          onChange={size => updateBrush({ size })}
+          label='Brush size' value={brush.size} onChange={size => updateBrush({ size })}
+          options={[1, 3, 5, 7, 9, 11, 13, 15].map(n => [n, `${n}x${n}`])} 
         />
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
