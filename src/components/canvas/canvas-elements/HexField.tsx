@@ -4,7 +4,6 @@ import { HexmapField } from "../../../app-state/hexmap.model"
 import { Draw } from "../../../draw/draw"
 import { AppContext } from "../../../app-state/app-state.model"
 import { useContext } from "react"
-import { Image } from "react-konva"
 import Icon from "./Icon"
 // import { Text } from "react-konva"
 
