@@ -1,13 +1,14 @@
 @import './app-nav.scss';
 
-.AppNavSelect {
+.AppNavDropdown {
   @include nav-item;
   position: relative;
   &__dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    width: fit-content;
+    min-width: 100%;
     z-index: 1;
     transition-duration: 100ms;
     height: 0;

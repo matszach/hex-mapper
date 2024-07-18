@@ -8,6 +8,7 @@ import { KonvaEventObject } from "konva/lib/Node"
 export interface AppState {
   map: Hexmap,
   updateMap: (newMap: Hexmap) => void
+  newMap: (x: number, y: number) => void
   history: Hexmap[]
   saveHistory: () => void
   undoHistory: () => void
@@ -36,6 +37,7 @@ export const defaultAppState: AppState = {
     fields: generateEmptyGrid(50, 30)
   },
   updateMap: () => {},
+  newMap: () => {},
   history: [],
   saveHistory: () => {},
   undoHistory: () => {},

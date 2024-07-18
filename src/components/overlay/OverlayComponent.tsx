@@ -9,9 +9,10 @@ import AppNavButton from './controls/AppNavButton';
 import { preloadIcon } from '../../hooks/use-icon';
 import { printMap } from '../../utils/print.utils';
 import AppNavSelect from './controls/AppNavSelect';
+import AppNavDropdown from './controls/AppNavDropdown';
 
 export default function OverlayComponent() {
-  const { brush, updateBrush, undoHistory, palette, updatePalette, printRef } = useContext(AppContext)
+  const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, newMap } = useContext(AppContext)
 
   useEffect(() => {
     if (brush.type === BrushType.ICON && brush.key) {
@@ -27,6 +28,10 @@ export default function OverlayComponent() {
         <AppNavSelect 
           label='Brush size' value={brush.size} onChange={size => updateBrush({ size })}
           options={[1, 3, 5, 7, 9, 11, 13, 15].map(n => [n, `${n}x${n}`])} 
+        />
+        <AppNavDropdown
+          label='New' onChoice={([x, y]) => newMap(x, y)}
+          options={[[30, 20], [40, 25], [50, 30], [60, 35], [70, 40]].map(n => [n, `${n[1]}x${n[0]}`])}
         />
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>

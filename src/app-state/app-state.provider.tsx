@@ -7,6 +7,7 @@ import { Vector2d } from "konva/lib/types";
 import { KonvaEventObject } from "konva/lib/Node";
 import { clamp } from "../utils/calc.utils";
 import { clone } from "../draw/draw.tool";
+import { generateEmptyGrid } from "../utils/grid.utils";
 
 export default function AppStateProvider({ children }: { children?: React.ReactNode }) {
 
@@ -15,6 +16,11 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
 
   const updateMap = (newMap: Hexmap) => {
     setMap({ ...newMap })
+  }
+
+  const newMap = (x: number, y: number) => {
+    updateMap({ fields: generateEmptyGrid(x, y) })
+    setHistory([])
   }
 
   // History
@@ -64,7 +70,7 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
 
   // State 
   const appState: AppState = {
-    map, updateMap,
+    map, updateMap, newMap,
     history, saveHistory, undoHistory,
     brush, updateBrush,
     zoom, handleZoom,
