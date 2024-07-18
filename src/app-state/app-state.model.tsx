@@ -17,6 +17,8 @@ export interface AppState {
   handleZoom: (e: KonvaEventObject<WheelEvent>) => void
   palette: string[]
   updatePalette: (newPalette: string[]) => void
+  printRef: any
+  setPrintRef: (ref: any) => void
 }
 
 const DEFAULT_PALETTE = [
@@ -49,7 +51,9 @@ export const defaultAppState: AppState = {
   palette: [
     ...DEFAULT_PALETTE
   ],
-  updatePalette: () => {}
+  updatePalette: () => {},
+  printRef: null,
+  setPrintRef: () => {}
 }
 
 export const AppContext = createContext<AppState>(defaultAppState)

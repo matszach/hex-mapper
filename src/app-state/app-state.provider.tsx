@@ -59,13 +59,17 @@ export default function AppStateProvider({ children }: { children?: React.ReactN
     setPalette([...newPalette])
   }
 
+  // Print Ref
+  const [printRef, setPrintRef] = useState<any>(null)
+
   // State 
   const appState: AppState = {
     map, updateMap,
     history, saveHistory, undoHistory,
     brush, updateBrush,
     zoom, handleZoom,
-    palette, updatePalette
+    palette, updatePalette,
+    printRef, setPrintRef
   }
 
   return (

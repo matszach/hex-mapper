@@ -3,7 +3,7 @@ import './CanvasComponent.scss';
 import HexField from './canvas-elements/HexField';
 import { useWindowSize } from 'usehooks-ts';
 import Konva from 'konva';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
@@ -15,6 +15,14 @@ Konva.dragButtons = [2]
 export default function CanvasComponent() {
   const size = useWindowSize()
   const c = useContext(AppContext)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      c.setPrintRef(ref.current)
+    }
+  }, [ref])
+
   return (
     <Stage
       width={size.width} height={size.height} 
@@ -26,6 +34,7 @@ export default function CanvasComponent() {
       <Layer
         onMouseEnter={e => Draw.onEnterCanvas(e, c)}
         onMouseLeave={e => Draw.onLeaveCanvas(e, c)}
+        ref={ref}
       > 
         {c.map?.fields.map(row => (
           row.map(field => (

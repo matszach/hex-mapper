@@ -7,9 +7,10 @@ import AppColorPalette from './controls/AppColorPalette';
 import { BrushType } from '../../app-state/brush.model';
 import AppNavButton from './controls/AppNavButton';
 import { preloadIcon } from '../../hooks/use-icon';
+import { printMap } from '../../utils/print.utils';
 
 export default function OverlayComponent() {
-  const { brush, updateBrush, undoHistory, palette, updatePalette } = useContext(AppContext)
+  const { brush, updateBrush, undoHistory, palette, updatePalette, printRef } = useContext(AppContext)
 
   useEffect(() => {
     if (brush.type === BrushType.ICON && brush.key) {
@@ -21,6 +22,7 @@ export default function OverlayComponent() {
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
         <AppNavButton onClick={undoHistory}>Undo</AppNavButton>
+        <AppNavButton onClick={() => printMap(printRef)}>Export</AppNavButton>
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
