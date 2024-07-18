@@ -1,14 +1,22 @@
 import { ASIDE_WIDTH, NAV_HEIGHT } from '../../const/sizes';
 import './OverlayComponent.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
 import AppSelect from './controls/AppSelect';
 import AppColorPalette from './controls/AppColorPalette';
 import { BrushType } from '../../app-state/brush.model';
 import AppNavButton from './controls/AppNavButton';
+import { preloadIcon } from '../../hooks/use-icon';
 
 export default function OverlayComponent() {
   const { brush, updateBrush, undoHistory, palette, updatePalette } = useContext(AppContext)
+
+  useEffect(() => {
+    if (brush.type === BrushType.ICON && brush.key) {
+      preloadIcon(brush.key, brush.color)
+    }
+  }, [brush.type, brush.key, brush.color])
+
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>

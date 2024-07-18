@@ -25,6 +25,10 @@ const DEFAULT_PALETTE = [
   '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'
 ]
 
+const AVAILABLE_ICONS = [
+  'castle'
+]
+
 export const defaultAppState: AppState = {
   map: { 
     fields: generateEmptyGrid(50, 30)
@@ -36,6 +40,7 @@ export const defaultAppState: AppState = {
   brush: {
     size: 1,
     type: BrushType.FILL,
+    key: AVAILABLE_ICONS[0],
     color: DEFAULT_PALETTE[0]
   },
   updateBrush: () => {},
