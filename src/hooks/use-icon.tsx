@@ -24,7 +24,6 @@ function loadIcon(src: string, color: string): Promise<CanvasImageSource> {
         ctx.globalCompositeOperation = 'source-in'
         // @ts-ignore
         ctx.fillRect(0, 0, img.width, img.height)
-        // console.log('preloaded', src, color)
         res(canvas)
       }
     }
