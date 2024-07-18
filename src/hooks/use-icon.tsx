@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react"
 
-
 const PRELOADED_ICONS: Map<string, any> = new Map()
 
-export function useIcon(src: string, color: string): CanvasImageSource | null {
-  const [image, setImage] = useState<CanvasImageSource | null>(null)
+function loadIcon(src: string, color: string): Promise<CanvasImageSource> {
   const key = `${src}-${color}`
-  useEffect(() => {
+  return new Promise(res => {
     if (PRELOADED_ICONS.has(key)) {
-      setImage(PRELOADED_ICONS.get(key))
+      res(PRELOADED_ICONS.get(key))
     } else {
       const canvas = document.createElement('canvas')
       PRELOADED_ICONS.set(key, canvas)
@@ -27,9 +25,20 @@ export function useIcon(src: string, color: string): CanvasImageSource | null {
         // @ts-ignore
         ctx.fillRect(0, 0, img.width, img.height)
         // console.log('preloaded', src, color)
-        setImage(canvas)
-      }                    
+        res(canvas)
+      }
     }
+  })
+}
+
+export function preloadIcon(src: string, color: string): void {
+  loadIcon(src, color)
+}
+
+export function useIcon(src: string, color: string): CanvasImageSource | null {
+  const [image, setImage] = useState<CanvasImageSource | null>(null)
+  useEffect(() => {
+    loadIcon(src, color).then(setImage)
   })
   return image
 }

@@ -3,16 +3,16 @@ import './OverlayComponent.scss';
 import { useContext } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
 import AppSelect from './controls/AppSelect';
-import { Button } from 'react-bootstrap';
 import AppColorPalette from './controls/AppColorPalette';
 import { BrushType } from '../../app-state/brush.model';
+import AppNavButton from './controls/AppNavButton';
 
 export default function OverlayComponent() {
   const { brush, updateBrush, undoHistory, palette, updatePalette } = useContext(AppContext)
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
-        
+        <AppNavButton onClick={undoHistory}>Undo</AppNavButton>
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
@@ -39,7 +39,6 @@ export default function OverlayComponent() {
             value={brush.color}
             onChange={e => updateBrush({ color: e })}
           />
-          <Button onClick={undoHistory}>Undo</Button>
         </div>
       </aside>
     </div>
