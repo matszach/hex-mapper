@@ -19,6 +19,7 @@
     }
     &__item {
       padding: 5px;
+      white-space: nowrap;
       cursor: pointer;
       transition-duration: 100ms;
       &:hover {
