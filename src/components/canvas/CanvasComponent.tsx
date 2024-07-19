@@ -9,6 +9,7 @@ import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
 import ToolIndicator from './canvas-elements/ToolIndicator';
 import { Draw } from '../../draw/draw';
+import Background from './canvas-elements/Background';
 
 Konva.dragButtons = [2]
 
@@ -31,11 +32,7 @@ export default function CanvasComponent() {
     >
       {/* Background */}
       <Layer>
-        <Rect
-          x={0} y={0}
-          width={size.width} height={size.height}
-          fill={'#f4f4f4'}
-        />
+        <Background size={size} />
       </Layer>
       {/* Map Layer */}
       <Layer
