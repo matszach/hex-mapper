@@ -4,6 +4,7 @@ import { generateEmptyGrid } from "../utils/grid.utils"
 import { Brush, BrushType } from "./brush.model"
 import { Vector2d } from "konva/lib/types"
 import { KonvaEventObject } from "konva/lib/Node"
+import { DEFAULT_PALETTE, ICON_KEYS } from "../const/config"
 
 export interface AppState {
   map: Hexmap,
@@ -22,16 +23,6 @@ export interface AppState {
   setPrintRef: (ref: any) => void
 }
 
-const DEFAULT_PALETTE = [
-  '#000000', '#e4a672', '#b86f50', '#743f39', '#3f2832', '#9e2835', '#e53b44', '#fb922b', 
-  '#ffe762', '#63c64d', '#327345', '#193d3f', '#4f6781', '#1fbfd2', '#2ce8f4', '#0484d1',
-  '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'
-]
-
-const AVAILABLE_ICONS = [
-  'castle'
-]
-
 export const defaultAppState: AppState = {
   map: { 
     fields: generateEmptyGrid(50, 30)
@@ -44,7 +35,7 @@ export const defaultAppState: AppState = {
   brush: {
     size: 1,
     type: BrushType.FILL,
-    key: AVAILABLE_ICONS[0],
+    key: ICON_KEYS[0],
     color: DEFAULT_PALETTE[0]
   },
   updateBrush: () => {},

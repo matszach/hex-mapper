@@ -14,6 +14,14 @@ export const ALLOWED_BRUSH_SIZES = [
 ]
 
 export const ICON_KEYS = [
-  'castle', 'test1', 'test2', 'test3', 
-  'test4', 'test5', 'test6', 'test7',
+  'castle', 'caldera', 'campfire', 'camping-tent',
+  'cave-entrance', 'church', 'crowned-skull', 'dragon-head',
+  'holy-oak', 'palisade', 'peaks', 'pine-tree',
+  'pirate-flag', 'round-star', 'stone-tower', 'village'
+]
+
+export const DEFAULT_PALETTE = [
+  '#000000', '#e4a672', '#b86f50', '#743f39', '#3f2832', '#9e2835', '#e53b44', '#fb922b', 
+  '#ffe762', '#63c64d', '#327345', '#193d3f', '#4f6781', '#1fbfd2', '#2ce8f4', '#0484d1',
+  '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'
 ]
