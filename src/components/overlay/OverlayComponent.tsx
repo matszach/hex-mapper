@@ -23,27 +23,30 @@ export default function OverlayComponent() {
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
+        <AppNavDropdown
+          label='New' onChoice={([x, y]) => newMap(x, y)}
+          options={[[30, 20], [40, 25], [50, 30], [60, 35], [70, 40]].map(n => [n, `${n[0]}x${n[1]}`])}
+        />
         <AppNavButton label='Undo' onClick={undoHistory}/>
-        <AppNavButton label='Export' onClick={() => printMap(printRef)}/>
+        <AppNavButton label='Redo (WIP)' onClick={() => {}}/>
+        <AppNavButton label='Export (WIP)' onClick={() => printMap(printRef)}/>
         <AppNavSelect 
           label='Brush size' value={brush.size} onChange={size => updateBrush({ size })}
           options={[1, 3, 5, 7, 9, 11, 13, 15].map(n => [n, `${n}x${n}`])} 
         />
-        <AppNavDropdown
-          label='New' onChoice={([x, y]) => newMap(x, y)}
-          options={[[30, 20], [40, 25], [50, 30], [60, 35], [70, 40]].map(n => [n, `${n[1]}x${n[0]}`])}
+        <AppNavSelect
+          label='Tool' value={brush.type} onChange={type => updateBrush({ type })}
+          options={[
+            [BrushType.FILL, 'Fill'],
+            [BrushType.ICON, 'Icon (WIP)'],
+            [BrushType.PATTERN, 'Pattern (WIP)'],
+            [BrushType.LINE, 'Line (WIP)'],
+            [BrushType.TEXT, 'Text (WIP)']
+          ]}
         />
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
-          {/* TODO replace by radio button like ? */}
-          <AppSelect
-            className='mb-2' 
-            label='Brush type' 
-            value={BrushType[brush.type]} 
-            options={['FILL', 'PATTERN', 'ICON', 'LINE', 'TEXT']} 
-            onChange={e => updateBrush({ type: BrushType[e as keyof typeof BrushType] })} 
-          />
           <AppColorPalette
             className='mb-2'
             palette={palette}

@@ -1,6 +1,6 @@
 @mixin nav-item {
   display: inline-block;
-  padding: 5px;
+  padding: 10px;
   height: 100%;
   border-right: 2px solid #ccc;
   cursor: pointer;
@@ -14,5 +14,6 @@
   }
   &:active {
     background-color: #aaa;
+    transform: translateY(1px);
   }
 }

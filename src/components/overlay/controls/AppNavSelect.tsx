@@ -9,9 +9,7 @@ export interface AppNavSelectProps {
 
 export default function AppNavSelect({ label, value, options, onChange }: AppNavSelectProps) {
   const displayed = options.find(o => o[0] === value)?.[1]
-  return <AppNavDropdown
-    label={`${label}: ${displayed}`}
-    options={options}
-    onChoice={onChange}
-  />                                                                       
+  return <AppNavDropdown options={options} onChoice={onChange}>
+    {label}: <strong>{displayed}</strong>
+  </AppNavDropdown>                                                                      
 }
