@@ -21,6 +21,7 @@ export default function ToolIndicator() {
   return (
     <>
       <Line
+        listening={false}
         points={points}
         stroke={'blue'}
         strokeWidth={clamp(5 / zoom.x, 5, 15)}

@@ -1,9 +1,9 @@
-import { Stage, Layer } from 'react-konva';
+import { Stage, Layer, Rect } from 'react-konva';
 import './CanvasComponent.scss';
 import HexField from './canvas-elements/HexField';
 import { useWindowSize } from 'usehooks-ts';
 import Konva from 'konva';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
 import { prevent } from '../../utils/evt.utils';
 import { STAGE_OFFSET } from '../../const/sizes';
@@ -26,12 +26,22 @@ export default function CanvasComponent() {
   return (
     <Stage
       width={size.width} height={size.height} 
-      onWheel={c.handleZoom} scale={c.zoom}
-      draggable
+      onWheel={c.handleZoom}
       onContextMenu={prevent}
-      offset={STAGE_OFFSET}
     >
+      {/* Background */}
+      <Layer>
+        <Rect
+          x={0} y={0}
+          width={size.width} height={size.height}
+          fill={'#f4f4f4'}
+        />
+      </Layer>
+      {/* Map Layer */}
       <Layer
+        offset={STAGE_OFFSET}
+        draggable
+        scale={c.zoom}
         onMouseEnter={e => Draw.onEnterCanvas(e, c)}
         onMouseLeave={e => Draw.onLeaveCanvas(e, c)}
         ref={ref}
@@ -41,8 +51,6 @@ export default function CanvasComponent() {
             <HexField key={`${field.x}-${field.y}`} {...field} />
           ))
         ))}
-      </Layer>
-      <Layer listening={false}>
         <ToolIndicator/>
       </Layer>
     </Stage>
