@@ -1,14 +1,27 @@
-const CASHED_COLORS: Record<string, [number, number, number]> = {}
+var hexToHsl = require('hex-to-hsl');
+
+const CASHED_RGB: Record<string, [number, number, number]> = {}
 
 export function toRgb(hex: string): [number, number, number] {
-  if (hex in CASHED_COLORS) {
-    return CASHED_COLORS[hex]
+  if (hex in CASHED_RGB) {
+    return CASHED_RGB[hex]
   }
   hex = hex.replace(/^#/, '');
-  var bigint = parseInt(hex, 16);
-  var r = (bigint >> 16) & 255;
-  var g = (bigint >> 8) & 255;
-  var b = bigint & 255;
-  CASHED_COLORS[hex] = [r, g, b]
+  let bigint = parseInt(hex, 16);
+  let r = (bigint >> 16) & 255;
+  let g = (bigint >> 8) & 255;
+  let b = bigint & 255;
+  CASHED_RGB[hex] = [r, g, b]
   return [r, g, b]
+}
+
+const CASHED_HSL: Record<string, [number, number, number]> = {}
+
+export function toHsl(hex: string): [number, number, number] {
+  if (hex in CASHED_HSL) {
+    return CASHED_HSL[hex]
+  }
+  const [h, s, l] = hexToHsl(hex)
+  CASHED_HSL[hex] = [h, s, l]
+  return [h, s, l]
 }
