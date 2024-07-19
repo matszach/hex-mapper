@@ -10,6 +10,7 @@ import { preloadIcon } from '../../hooks/use-icon';
 import { printMap } from '../../utils/print.utils';
 import AppNavSelect from './controls/AppNavSelect';
 import AppNavDropdown from './controls/AppNavDropdown';
+import AppIconPicker from './controls/AppIconPicker';
 
 export default function OverlayComponent() {
   const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, newMap } = useContext(AppContext)
@@ -48,13 +49,15 @@ export default function OverlayComponent() {
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
           <AppColorPalette
-            className='mb-2'
             palette={palette}
             onEdit={updatePalette}
             value={brush.color}
             onChange={e => updateBrush({ color: e })}
           />
           {/* content to depend on brush type */}
+          {brush.type === BrushType.ICON && (
+            <AppIconPicker value={brush.key} onChange={key => updateBrush({ key })}/>
+          )}
         </div>
       </aside>
     </div>
