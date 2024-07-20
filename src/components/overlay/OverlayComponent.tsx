@@ -1,26 +1,23 @@
-import { ASIDE_WIDTH, NAV_HEIGHT } from '../../const/sizes';
 import './OverlayComponent.scss';
-import { useContext, useEffect } from 'react';
+import { ASIDE_WIDTH, NAV_HEIGHT } from '../../const/sizes';
+import { useContext } from 'react';
 import { AppContext } from '../../app-state/app-state.model';
-import AppSelect from './controls/AppSelect';
 import AppColorPalette from './controls/AppColorPalette';
 import { BrushType } from '../../app-state/brush.model';
 import AppNavButton from './controls/AppNavButton';
-import { preloadIcon } from '../../hooks/use-icon';
+import { usePreloadIcons } from '../../hooks/use-icon';
 import { printMap } from '../../utils/print.utils';
 import AppNavSelect from './controls/AppNavSelect';
 import AppNavDropdown from './controls/AppNavDropdown';
 import AppIconPicker from './controls/AppIconPicker';
-import { ALLOWED_BRUSH_SIZES, ALLOWED_MAP_RESOLUTIONS, ICON_KEYS } from '../../const/config';
+import { ALLOWED_BRUSH_SIZES, ALLOWED_MAP_RESOLUTIONS, fetchIconKeys } from '../../const/config';
+import { usePromise } from '../../hooks/use-promise';
 
 export default function OverlayComponent() {
+  
   const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, newMap } = useContext(AppContext)
-
-  useEffect(() => {
-    if (brush.type === BrushType.ICON && brush.key) {
-      preloadIcon(brush.key, brush.color)
-    }
-  }, [brush.type, brush.key, brush.color])
+  usePreloadIcons(brush)
+  const [iconKeys] = usePromise(fetchIconKeys(), [])
 
   return (
     <div className='Overlay'>
@@ -56,7 +53,7 @@ export default function OverlayComponent() {
           {/* content to depend on brush type */}
           {brush.type === BrushType.ICON && (
             <AppIconPicker 
-              value={brush.key ?? ''} iconKeys={ICON_KEYS} color={brush.color}
+              value={brush.key ?? ''} iconKeys={iconKeys} color={brush.color}
               onChange={key => updateBrush({ key })}
             />
           )}

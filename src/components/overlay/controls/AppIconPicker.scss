@@ -14,18 +14,18 @@
         height: 90%;
         z-index: 1;
       }
-      &__mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        mix-blend-mode: multiply;
-      }
-      background-color: #666;
-      width: 71px;
-      height: 71px;
+      // &__mask {
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 100%;
+      //   z-index: 2;
+      //   mix-blend-mode: multiply;
+      // }
+      // background-color: #666;
+      width: 35.5px;
+      height: 35.5px;
       cursor: pointer;
       border: 1px solid #ddd;
       &--selected {

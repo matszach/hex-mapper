@@ -13,12 +13,11 @@ export const ALLOWED_BRUSH_SIZES = [
   1, 3, 5, 7, 9, 11, 13, 15
 ]
 
-export const ICON_KEYS = [
-  'castle', 'caldera', 'campfire', 'camping-tent',
-  'cave-entrance', 'church', 'crowned-skull', 'dragon-head',
-  'holy-oak', 'palisade', 'peaks', 'pine-tree',
-  'pirate-flag', 'round-star', 'stone-tower', 'village'
-]
+export function fetchIconKeys(): Promise<string[]> {
+  return fetch('./config.json')
+    .then(res => res.json())
+    .then(({ iconKeys }) => iconKeys)
+}
 
 export const DEFAULT_PALETTE = [
   '#000000', '#e4a672', '#b86f50', '#743f39', '#3f2832', '#9e2835', '#e53b44', '#fb922b', 

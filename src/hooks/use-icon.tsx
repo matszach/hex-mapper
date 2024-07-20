@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Brush, BrushType } from "../app-state/brush.model"
 
 const PRELOADED_ICONS: Map<string, any> = new Map()
 
@@ -32,6 +33,14 @@ function loadIcon(src: string, color: string): Promise<CanvasImageSource> {
 
 export function preloadIcon(src: string, color: string): void {
   loadIcon(src, color)
+}
+
+export function usePreloadIcons(brush: Brush): void {
+  useEffect(() => {
+    if (brush.type === BrushType.ICON && brush.key) {
+      preloadIcon(brush.key, brush.color)
+    }
+  }, [brush.type, brush.key, brush.color])
 }
 
 export function useIcon(src: string, color: string): CanvasImageSource | null {
