@@ -17,7 +17,7 @@ export default function OverlayComponent() {
   
   const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, newMap } = useContext(AppContext)
   usePreloadIcons(brush)
-  const [iconKeys] = usePromise(fetchIconKeys(), [])
+  const [iconKeys] = usePromise(() => fetchIconKeys(), [])
 
   return (
     <div className='Overlay'>
