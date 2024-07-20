@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './AppNavDropdown.scss'
 import { useBoolean } from 'usehooks-ts'
 
