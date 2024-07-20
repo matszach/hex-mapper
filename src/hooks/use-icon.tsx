@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Brush, BrushType } from "../app-state/brush.model"
+import { publicUrl } from "../utils/env.utils"
 
 const PRELOADED_ICONS: Map<string, any> = new Map()
 
@@ -13,7 +14,7 @@ function loadIcon(src: string, color: string): Promise<CanvasImageSource> {
       PRELOADED_ICONS.set(key, canvas)
       const ctx = canvas.getContext('2d')
       const img = new Image()
-      img.src = `./icons/${src}.png`
+      img.src = publicUrl(`icons/${src}.png`)
       img.onload = () => {
         canvas.width = img.width
         canvas.height = img.height

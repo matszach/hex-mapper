@@ -6,7 +6,7 @@ import AppColorPalette from './controls/AppColorPalette';
 import { BrushType } from '../../app-state/brush.model';
 import AppNavButton from './controls/AppNavButton';
 import { usePreloadIcons } from '../../hooks/use-icon';
-import { printMap } from '../../utils/print.utils';
+import { exportJson, exportPng } from '../../utils/export.utils';
 import AppNavSelect from './controls/AppNavSelect';
 import AppNavDropdown from './controls/AppNavDropdown';
 import AppIconPicker from './controls/AppIconPicker';
@@ -15,10 +15,10 @@ import { usePromise } from '../../hooks/use-promise';
 
 export default function OverlayComponent() {
   
-  const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, newMap } = useContext(AppContext)
+  const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, map, newMap } = useContext(AppContext)
   usePreloadIcons(brush)
   const [iconKeys] = usePromise(() => fetchIconKeys(), [])
-
+  console.log(iconKeys)
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
@@ -28,7 +28,13 @@ export default function OverlayComponent() {
         />
         <AppNavButton label='Undo' onClick={undoHistory}/>
         <AppNavButton label='Redo (WIP)' onClick={() => {}}/>
-        <AppNavButton label='Export (WIP)' onClick={() => printMap(printRef)}/>
+        <AppNavDropdown
+          label='Export as'
+          options={[
+            [1, 'PNG (WIP)', () => exportPng(printRef)],
+            [2, 'JSON', () => exportJson(map)],
+          ]}
+        />
         <AppNavSelect 
           label='Brush size' value={brush.size} onChange={size => updateBrush({ size })}
           options={ALLOWED_BRUSH_SIZES.map(n => [n, `${n}x${n}`])} 
@@ -37,7 +43,7 @@ export default function OverlayComponent() {
           label='Tool' value={brush.type} onChange={type => updateBrush({ type })}
           options={[
             [BrushType.FILL, 'Fill'],
-            [BrushType.ICON, 'Icon (WIP)'],
+            [BrushType.ICON, 'Icon'],
             [BrushType.PATTERN, 'Pattern (WIP)'],
             [BrushType.LINE, 'Line (WIP)'],
             [BrushType.TEXT, 'Text (WIP)']

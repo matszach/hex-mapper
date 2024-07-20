@@ -1,3 +1,5 @@
+import { publicUrl } from "../utils/env.utils"
+
 export const MAX_HISTORY_SIZE = 20
 export const ZOOM = {
   RATE: 1.2,
@@ -14,7 +16,7 @@ export const ALLOWED_BRUSH_SIZES = [
 ]
 
 export function fetchIconKeys(): Promise<string[]> {
-  return fetch('./config.json')
+  return fetch(publicUrl('config.json'))
     .then(res => res.json())
     .then(({ iconKeys }) => iconKeys)
 }
