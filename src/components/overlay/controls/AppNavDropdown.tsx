@@ -11,7 +11,7 @@ export interface AppNavDropdownProps {
 export default function AppNavDropdown({ label, options, onChoice, children }: AppNavDropdownProps) {
   const [open, setOpen] = useState(false)
   return (
-    <span className='AppNavDropdown' onClick={() => setOpen(!open)} onBlur={() => setOpen(false)}>
+    <span className='AppNavDropdown' onMouseEnter={() => setOpen(!open)} onMouseLeave={() => setOpen(false)}>
       {label}{children}
       <span className={`AppNavDropdown__dropdown ${open ? 'AppNavDropdown__dropdown--open' : ''}`}>
         {options.map(([o, text, fn]) => <div 
