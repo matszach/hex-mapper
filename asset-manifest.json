@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.b6220f4e.css",
-    "main.js": "/static/js/main.7d8a48ed.js",
-    "static/js/453.ea87b58a.chunk.js": "/static/js/453.ea87b58a.chunk.js",
-    "index.html": "/index.html",
-    "main.b6220f4e.css.map": "/static/css/main.b6220f4e.css.map",
-    "main.7d8a48ed.js.map": "/static/js/main.7d8a48ed.js.map",
-    "453.ea87b58a.chunk.js.map": "/static/js/453.ea87b58a.chunk.js.map"
+    "main.css": "/hex-mapper/static/css/main.b6220f4e.css",
+    "main.js": "/hex-mapper/static/js/main.881a5827.js",
+    "static/js/453.ea87b58a.chunk.js": "/hex-mapper/static/js/453.ea87b58a.chunk.js",
+    "index.html": "/hex-mapper/index.html",
+    "main.b6220f4e.css.map": "/hex-mapper/static/css/main.b6220f4e.css.map",
+    "main.881a5827.js.map": "/hex-mapper/static/js/main.881a5827.js.map",
+    "453.ea87b58a.chunk.js.map": "/hex-mapper/static/js/453.ea87b58a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b6220f4e.css",
-    "static/js/main.7d8a48ed.js"
+    "static/js/main.881a5827.js"
   ]
 }
