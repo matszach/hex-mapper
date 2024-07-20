@@ -2,8 +2,10 @@ export function isLocal(): boolean {
   return ['localhost', '127.0.0.1'].includes(window.location.hostname)
 }
 
+const baseUrl = isLocal() ? './hex-mapper/' : './'
+
 export function publicUrl(url: string): string {
-  return `./hex-mapper/${url}`
+  return baseUrl + url
 }
 
 export function isMobile(): boolean {
