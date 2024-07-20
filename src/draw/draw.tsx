@@ -32,16 +32,16 @@ export class Draw {
   }
 
   static onLeaveHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
-
-  }
-
-  static onDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
-    state.saveHistory()
     this.drawHex(e, hex, state)
   }
 
-  static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+  static onDownHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+    this.drawHex(e, hex, state)
+    state.saveHistory()
+  }
 
+  static onUpHex(e: Konva.KonvaEventObject<MouseEvent>, hex: HexmapField, state: AppState) {
+    this.drawHex(e, hex, state)
   }
 
   static onEnterCanvas(e: Konva.KonvaEventObject<MouseEvent>, state: AppState) {
