@@ -9,7 +9,6 @@ export interface AppNavDropdownProps {
 }
 
 export default function AppNavDropdown({ label, options, onChoice, children }: AppNavDropdownProps) {
-  // const [open, setOpen] = useState(false)
   const { value: open, setTrue, setFalse } = useBoolean(false)
   return (
     <span className='AppNavDropdown' onMouseEnter={setTrue} onMouseLeave={setFalse}>
