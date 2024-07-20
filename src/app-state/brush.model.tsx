@@ -4,7 +4,7 @@ export interface Brush {
   size: number,
   type: BrushType,
   color: string,
-  key?: string,
+  iconKey?: string,
   hoveredHex?: HexmapField
 }
 

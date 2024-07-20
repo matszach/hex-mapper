@@ -38,10 +38,10 @@ export function preloadIcon(src: string, color: string): void {
 
 export function usePreloadIcons(brush: Brush): void {
   useEffect(() => {
-    if (brush.type === BrushType.ICON && brush.key) {
-      preloadIcon(brush.key, brush.color)
+    if (brush.type === BrushType.ICON && brush.iconKey) {
+      preloadIcon(brush.iconKey, brush.color)
     }
-  }, [brush.type, brush.key, brush.color])
+  }, [brush.type, brush.iconKey, brush.color])
 }
 
 export function useIcon(src: string, color: string): CanvasImageSource | null {

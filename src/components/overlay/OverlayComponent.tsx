@@ -59,8 +59,8 @@ export default function OverlayComponent() {
           {/* content to depend on brush type */}
           {brush.type === BrushType.ICON && (
             <AppIconPicker 
-              value={brush.key ?? ''} iconKeys={iconKeys} color={brush.color}
-              onChange={key => updateBrush({ key })}
+              value={brush.iconKey ?? ''} iconKeys={iconKeys} color={brush.color}
+              onChange={key => updateBrush({ iconKey: key })}
             />
           )}
         </div>

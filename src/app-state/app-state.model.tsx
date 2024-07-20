@@ -36,7 +36,7 @@ export const defaultAppState: AppState = {
   brush: {
     size: 1,
     type: BrushType.FILL,
-    key: 'castle',
+    iconKey: 'castle',
     color: DEFAULT_PALETTE[0]
   },
   updateBrush: () => {},
