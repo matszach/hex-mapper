@@ -14,9 +14,16 @@ export interface HexmapIcon {
 export interface HexmapPattern {
   color: string,
   nofLines: number,
+  type: HexmapPatternType,
   dash?: [number, number]
+  alternatingDash? : [number, number]
   angle?: number
-}                                 
+}      
+
+export enum HexmapPatternType {
+  HATCH,
+  CROSSHATCH
+}
 
 export interface Hexmap {
   timestamp?: number,
