@@ -18,12 +18,12 @@ const mockDefaultPattern: HexmapPattern = {
 
 // TODO, kinda slow
 export default function Pattern({ x, y, pattern = mockDefaultPattern }: PatternProps) {
-  if (y > 0) {
-    return null
-  }
-  // if (!pattern) {
+  // if (y > 0) {
   //   return null
   // }
+  if (!pattern) {
+    return null
+  }
   const lines = buildLines(x, y, pattern)
   return (
     <>
