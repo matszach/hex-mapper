@@ -21,7 +21,6 @@ export interface AppPatternPickerProps {
 export default function AppPatternPicker({ value = defaultPattern, onChange }: AppPatternPickerProps) {
  
   const update = (p: Partial<PatternType>) => {
-    console.log(p)
     onChange({ ...value, ...p })
   }
 
