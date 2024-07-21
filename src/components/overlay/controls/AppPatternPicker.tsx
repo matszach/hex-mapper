@@ -57,6 +57,7 @@ export default function AppPatternPicker({
       value={value.scale} min={minScale} max={maxScale} step={0.05} 
       onChange={scale => update({ scale })}
     />
+    {/* SLIDER ? */}
     <AppSelect
       label='Angle' className='mb-2'
       value={value.angle} options={angles.map(([a, label]) => [a, label])}
