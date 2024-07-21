@@ -68,13 +68,14 @@ export default function OverlayComponent() {
           {brush.type === BrushType.PATTERN && (
             <AppPatternPicker 
               value={brush.patternData}
+              selectedColor={brush.color}
               patternTypes={[
                 [HexmapPatternType.HATCH, "Hatch"],
                 [HexmapPatternType.CROSSHATCH, "Crosshatch (WIP)"],
                 [HexmapPatternType.ZIGZAG, "Zigzag (WIP)"]
               ]}
-              nofLinesRange={[1, 11]}
-              strokeWidthRange={[0.5, 5]}
+              nofLinesRange={[1, 13]}
+              strokeWidthRange={[0.5, 7]}
               angles={[
                 [0, "0°"],
                 [Math.PI * 1/3, "60°"],

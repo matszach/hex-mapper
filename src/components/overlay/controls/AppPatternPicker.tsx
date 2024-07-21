@@ -2,6 +2,8 @@ import './AppPatternPicker.scss'
 import { HexmapPattern, HexmapPatternType } from "../../../app-state/hexmap.model"
 import AppAsideElementWrapper from "./AppAsideElementWrapper"
 import { AppNumber, AppSelect } from './app-bootstrap-inputs'
+import { Layer, Stage } from 'react-konva'
+import HexField from '../../canvas/canvas-elements/HexField'
 
 type PatternTS = Omit<HexmapPattern, "color">
 
@@ -12,15 +14,17 @@ export interface AppPatternPickerProps {
   strokeWidthRange: [number, number]
   angles: [number, string][]
   onChange: (value: PatternTS) => void
+  selectedColor: string
 }
 
-export default function AppPatternPicker({ 
+export default function AppPatternPicker({
   value, 
   patternTypes, 
   nofLinesRange: [minLines, maxLines], 
   strokeWidthRange: [minWidth, maxWidth],
   angles,
-  onChange 
+  onChange,
+  selectedColor
 }: AppPatternPickerProps) {
  
   const update = (p: Partial<PatternTS>) => {
@@ -48,5 +52,15 @@ export default function AppPatternPicker({
       value={value.angle} options={angles.map(([a, label]) => [a, label])}
       onChange={angle => update({ angle: Number(angle) })}
     />
+    <Stage width={300} height={90}>
+      <Layer>
+        <HexField
+          x={2.4}
+          y={0.6}
+          pattern={{ ...value, color: selectedColor }}
+        />
+      </Layer>
+    </Stage>
+    {/* TODO some display for how the pater will look */}
   </AppAsideElementWrapper>
 }
