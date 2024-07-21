@@ -1,15 +1,16 @@
 import './AppPatternPicker.scss'
 import { HexmapPattern, HexmapPatternType } from "../../../app-state/hexmap.model"
 import AppAsideElementWrapper from "./AppAsideElementWrapper"
+import { AppNumber, AppSelect } from './app-bootstrap-inputs'
 
 type PatternTS = Omit<HexmapPattern, "color">
 
 export interface AppPatternPickerProps {
-  value: PatternTS,
-  patternTypes: [HexmapPatternType, string][],
-  nofLinesRange: [number, number],
-  strokeWidthRange: [number, number],
-  angleRange: [number, number],
+  value: PatternTS
+  patternTypes: [HexmapPatternType, string][]
+  nofLinesRange: [number, number]
+  strokeWidthRange: [number, number]
+  angles: [number, string][]
   onChange: (value: PatternTS) => void
 }
 
@@ -18,7 +19,7 @@ export default function AppPatternPicker({
   patternTypes, 
   nofLinesRange: [minLines, maxLines], 
   strokeWidthRange: [minWidth, maxWidth],
-  angleRange: [minAngle, maxAngle], 
+  angles,
   onChange 
 }: AppPatternPickerProps) {
  
@@ -27,21 +28,25 @@ export default function AppPatternPicker({
   }
 
   return <AppAsideElementWrapper label="Pattern">
-    <div>
-      <label>type</label>
-      <select onChange={e => update({ type: Number(e.target.value) as HexmapPatternType })} value={value.type}>
-        {patternTypes.map(([t, label]) => <option key={t} value={t}>{label}</option>)}
-      </select>
-      <br/>
-      <label>nof lines</label>
-      <input type="number" min={minLines} max={maxLines} value={value.nofLines} onChange={e => update({ nofLines: Number(e.target.value) })} />
-      <br/>
-      <label>width</label>
-      <input type="number" min={minWidth} max={maxWidth} value={value.strokeWidth} step={0.5} onChange={e => update({ strokeWidth: Number(e.target.value) })} />
-      <br/>
-      <label>angle</label>
-      <input type="number" min={minAngle} max={maxAngle} value={value.angle/Math.PI * 180} step={60} onChange={e => update({ angle: Number(e.target.value)/180 * Math.PI })} />
-      <br/>
-    </div>
+    <AppSelect
+      label='Type' className='mb-2'
+      value={value.type} options={patternTypes.map(([t, label]) => [t, label])}
+      onChange={type => update({ type: Number(type) as HexmapPatternType })}
+    />
+    <AppNumber
+      label='Number of lines' className='mb-2'
+      value={value.nofLines} min={minLines} max={maxLines} step={1} 
+      onChange={nofLines => update({ nofLines })}
+    />
+    <AppNumber
+      label='Line width' className='mb-2'
+      value={value.strokeWidth} min={minWidth} max={maxWidth} step={0.5} 
+      onChange={strokeWidth => update({ strokeWidth })}
+    />
+    <AppSelect
+      label='Angle' className='mb-2'
+      value={value.angle} options={angles.map(([a, label]) => [a, label])}
+      onChange={angle => update({ angle: Number(angle) })}
+    />
   </AppAsideElementWrapper>
 }

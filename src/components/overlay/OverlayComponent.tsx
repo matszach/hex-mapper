@@ -75,10 +75,19 @@ export default function OverlayComponent() {
               ]}
               nofLinesRange={[1, 11]}
               strokeWidthRange={[0.5, 5]}
-              angleRange={[0, 360]}
+              angles={[
+                [0, "0°"],
+                [Math.PI * 1/3, "60°"],
+                [Math.PI * 2/3, "120°"],
+                [Math.PI * 3/3, "180°"],
+                [Math.PI * 4/3, "240°"],
+                [Math.PI * 5/3, "300°"],
+                [Math.PI * 6/3, "360°"]
+              ]}
               onChange={patternData => updateBrush({ patternData })}
             />
           )}
+          {/* TODO LINE will have a toggle to snap to grid or not */}
         </div>
       </aside>
     </div>
