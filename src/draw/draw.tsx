@@ -18,7 +18,7 @@ export class Draw {
     if (brush.type === BrushType.ICON) {
       honeycombAround(hex, brush.size).forEach(hex => {
         safeHex(map, hex, {}).icon = {
-          key: brush.iconKey ?? '', // TODO HANDLE UNKNOWN ?
+          key: brush.iconKey,
           color: brush.color
         }
       })

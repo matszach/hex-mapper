@@ -9,15 +9,6 @@ export interface PatternProps {
   pattern?: HexmapPattern
 }
 
-const mockDefaultPattern: HexmapPattern = {
-  color: "black",
-  nofLines: 5,
-  angle: Math.PI/3,
-  type: HexmapPatternType.HATCH,
-  dash: undefined,
-  alternatingDash: false
-}
-
 // TODO, kinda slow
 export default function Pattern({ x, y, pattern }: PatternProps) {
   if (!pattern) {
@@ -31,7 +22,7 @@ export default function Pattern({ x, y, pattern }: PatternProps) {
           key={`line-${x}-${y}-${i}`}
           points={points}
           stroke={pattern.color}
-          strokeWidth={1}
+          strokeWidth={pattern.strokeWidth}
           dash={pattern.dash}
           // dashOffset={???}
         />

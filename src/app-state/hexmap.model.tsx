@@ -17,6 +17,7 @@ export interface HexmapPattern {
   type: HexmapPatternType,
   dash: [number, number] | undefined
   alternatingDash: boolean
+  strokeWidth: number
   angle: number
 }      
 

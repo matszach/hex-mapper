@@ -9,7 +9,8 @@ const defaultPattern: PatternType = {
   angle: 0,
   type: HexmapPatternType.HATCH,
   dash: undefined,
-  alternatingDash: false
+  alternatingDash: false,
+  strokeWidth: 1
 }
 
 export interface AppPatternPickerProps {
@@ -20,12 +21,13 @@ export interface AppPatternPickerProps {
 export default function AppPatternPicker({ value = defaultPattern, onChange }: AppPatternPickerProps) {
  
   const update = (p: Partial<PatternType>) => {
+    console.log(p)
     onChange({ ...value, ...p })
   }
 
   return <AppAsideElementWrapper label="Pattern">
     <div>
-      <select onChange={e => update({ type: e.target.value as unknown as HexmapPatternType })} value={value.type}>
+      <select onChange={e => update({ type: Number(e.target.value) as HexmapPatternType })} value={value.type}>
         <option value={HexmapPatternType.HATCH}>Hatch</option>
         <option value={HexmapPatternType.CROSSHATCH}>Crosshatch</option>
         <option value={HexmapPatternType.ZIGZAG}>Zigzag</option>
