@@ -43,6 +43,7 @@ export default function CanvasComponent() {
         onMouseLeave={e => Draw.onLeaveCanvas(e, c)}
         ref={ref}
       > 
+        {/* Optimize not to draw hexes that would be out of bounds (based od screen size, scale and drag) */}
         {c.map?.fields.map(row => (
           row.map(field => (
             <HexField key={`${field.x}-${field.y}`} {...field} />

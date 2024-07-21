@@ -13,6 +13,7 @@ import AppIconPicker from './controls/AppIconPicker';
 import { ALLOWED_BRUSH_SIZES, ALLOWED_MAP_RESOLUTIONS, fetchIconKeys } from '../../const/config';
 import { usePromise } from '../../hooks/use-promise';
 import AppPatternPicker from './controls/AppPatternPicker';
+import { HexmapPatternType } from '../../app-state/hexmap.model';
 
 export default function OverlayComponent() {
   
@@ -45,7 +46,7 @@ export default function OverlayComponent() {
           options={[
             [BrushType.FILL, 'Fill'],
             [BrushType.ICON, 'Icon'],
-            [BrushType.PATTERN, 'Pattern (WIP)'],
+            [BrushType.PATTERN, 'Pattern'],
             [BrushType.LINE, 'Line (WIP)'],
             [BrushType.TEXT, 'Text (WIP)']
           ]}
@@ -60,13 +61,18 @@ export default function OverlayComponent() {
           {/* content to depend on brush type */}
           {brush.type === BrushType.ICON && (
             <AppIconPicker 
-              value={brush.iconKey ?? ''} iconKeys={iconKeys}
+              value={brush.iconKey} iconKeys={iconKeys}
               onChange={key => updateBrush({ iconKey: key })}
             />
           )}
           {brush.type === BrushType.PATTERN && (
             <AppPatternPicker 
-              value={brush.patternData} 
+              value={brush.patternData}
+              patternTypes={[
+                [HexmapPatternType.HATCH, "Hatch"],
+                [HexmapPatternType.CROSSHATCH, "Crosshatch (WIP)"],
+                [HexmapPatternType.ZIGZAG, "Zigzag (WIP)"]
+              ]}
               onChange={patternData => updateBrush({ patternData })}
             />
           )}
