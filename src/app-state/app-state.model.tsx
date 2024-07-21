@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { Hexmap } from "./hexmap.model"
+import { Hexmap, HexmapPatternType } from "./hexmap.model"
 import { generateEmptyGrid } from "../utils/grid.utils"
 import { Brush, BrushType } from "./brush.model"
 import { Vector2d } from "konva/lib/types"
@@ -37,7 +37,15 @@ export const defaultAppState: AppState = {
     size: 1,
     type: BrushType.FILL,
     iconKey: 'castle',
-    color: DEFAULT_PALETTE[0]
+    color: DEFAULT_PALETTE[0],
+    erasing: false,
+    patternData: {
+      nofLines: 3,
+      angle: 0,
+      type: HexmapPatternType.HATCH,
+      dash: undefined,
+      alternatingDash: false
+    }
   },
   updateBrush: () => {},
   zoom: { x: 1, y: 1 },

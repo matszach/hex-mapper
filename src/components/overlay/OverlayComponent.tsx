@@ -12,13 +12,14 @@ import AppNavDropdown from './controls/AppNavDropdown';
 import AppIconPicker from './controls/AppIconPicker';
 import { ALLOWED_BRUSH_SIZES, ALLOWED_MAP_RESOLUTIONS, fetchIconKeys } from '../../const/config';
 import { usePromise } from '../../hooks/use-promise';
+import AppPatternPicker from './controls/AppPatternPicker';
 
 export default function OverlayComponent() {
   
   const { brush, updateBrush, undoHistory, palette, updatePalette, printRef, map, newMap } = useContext(AppContext)
   usePreloadIcons(brush)
   const [iconKeys] = usePromise(() => fetchIconKeys(), [])
-  console.log(iconKeys)
+
   return (
     <div className='Overlay'>
       <nav className='Overlay__nav' style={{ width: '100vw', height: NAV_HEIGHT }}>
@@ -59,8 +60,14 @@ export default function OverlayComponent() {
           {/* content to depend on brush type */}
           {brush.type === BrushType.ICON && (
             <AppIconPicker 
-              value={brush.iconKey ?? ''} iconKeys={iconKeys} color={brush.color}
+              value={brush.iconKey ?? ''} iconKeys={iconKeys}
               onChange={key => updateBrush({ iconKey: key })}
+            />
+          )}
+          {brush.type === BrushType.PATTERN && (
+            <AppPatternPicker 
+              value={brush.patternData} 
+              onChange={patternData => updateBrush({ patternData })}
             />
           )}
         </div>

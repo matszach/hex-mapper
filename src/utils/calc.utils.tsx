@@ -36,3 +36,15 @@ export function areEqual(arr1: any[], arr2: any[]): boolean {
   }
   return true
 }
+
+export function getRotateFn(pivotX: number, pivotY: number, angle: number): (x: number, y: number) => [number, number] {
+  const cos = Math.cos(angle)
+  const sin = Math.sin(angle)
+  return (x: number, y: number): [number, number] => {
+    const x1 = x - pivotX
+    const y1 = y - pivotY
+    const x2 = x1 * cos - y1 * sin
+    const y2 = x1 * sin + y1 * cos
+    return [x2 + pivotX, y2 + pivotY]
+  }                             
+}

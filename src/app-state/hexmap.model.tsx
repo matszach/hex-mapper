@@ -15,14 +15,15 @@ export interface HexmapPattern {
   color: string,
   nofLines: number,
   type: HexmapPatternType,
-  dash?: [number, number]
-  alternatingDash? : [number, number]
-  angle?: number
+  dash: [number, number] | undefined
+  alternatingDash: boolean
+  angle: number
 }      
 
 export enum HexmapPatternType {
   HATCH,
-  CROSSHATCH
+  CROSSHATCH,
+  ZIGZAG
 }
 
 export interface Hexmap {

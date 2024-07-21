@@ -23,6 +23,14 @@ export class Draw {
         }
       })
     }
+    if (brush.type === BrushType.PATTERN) {
+      honeycombAround(hex, brush.size).forEach(hex => {
+        safeHex(map, hex, {}).pattern = {
+          ...brush.patternData,
+          color: brush.color
+        }
+      })
+    }
     updateMap(map)
   }
 

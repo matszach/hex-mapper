@@ -4,12 +4,11 @@ import './AppIconPicker.scss'
 
 export interface AppIconPickerProps {
   value: string
-  color: string
   onChange: (value: string) => void
   iconKeys: string[]
 }
 
-export default function AppIconPicker({ value, color, onChange, iconKeys }: AppIconPickerProps) {
+export default function AppIconPicker({ value, onChange, iconKeys }: AppIconPickerProps) {
   return <AppAsideElementWrapper label='Icon'>
     <div className="AppIconPicker__icons">
       {iconKeys.map(key => <div
