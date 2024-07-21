@@ -73,6 +73,8 @@ export default function OverlayComponent() {
                 [HexmapPatternType.CROSSHATCH, "Crosshatch (WIP)"],
                 [HexmapPatternType.ZIGZAG, "Zigzag (WIP)"]
               ]}
+              minLines={1} maxLines={11}
+              minWidth={0.5} maxWidth={5}
               onChange={patternData => updateBrush({ patternData })}
             />
           )}
