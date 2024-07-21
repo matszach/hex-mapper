@@ -4,21 +4,12 @@ import AppAsideElementWrapper from "./AppAsideElementWrapper"
 
 type PatternType = Omit<HexmapPattern, "color">
 
-const defaultPattern: PatternType = {
-  nofLines: 5,
-  angle: 0,
-  type: HexmapPatternType.HATCH,
-  dash: undefined,
-  alternatingDash: false,
-  strokeWidth: 1
-}
-
 export interface AppPatternPickerProps {
-  value?: PatternType
+  value: PatternType
   onChange: (value: PatternType) => void
 }
 
-export default function AppPatternPicker({ value = defaultPattern, onChange }: AppPatternPickerProps) {
+export default function AppPatternPicker({ value, onChange }: AppPatternPickerProps) {
  
   const update = (p: Partial<PatternType>) => {
     onChange({ ...value, ...p })
