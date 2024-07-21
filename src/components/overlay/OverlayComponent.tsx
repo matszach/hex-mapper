@@ -76,14 +76,22 @@ export default function OverlayComponent() {
               ]}
               nofLinesRange={[1, 13]}
               strokeWidthRange={[0.5, 7]}
+              scaleRange={[0.1, 2]}
+              // TODO make this a slider
               angles={[
                 [0, "0°"],
-                [Math.PI * 1/3, "60°"],
-                [Math.PI * 2/3, "120°"],
-                [Math.PI * 3/3, "180°"],
-                [Math.PI * 4/3, "240°"],
-                [Math.PI * 5/3, "300°"],
-                [Math.PI * 6/3, "360°"]
+                [Math.PI * 1/6, "30°"],
+                [Math.PI * 2/6, "60°"],
+                [Math.PI * 3/6, "90°"],
+                [Math.PI * 4/6, "120°"],
+                [Math.PI * 5/6, "150°"],
+                [Math.PI * 6/6, "180°"],
+                [Math.PI * 7/6, "210°"],
+                [Math.PI * 8/6, "240°"],
+                [Math.PI * 9/6, "270°"],
+                [Math.PI * 10/6, "300°"],
+                [Math.PI * 11/6, "330°"],
+                [Math.PI * 12/6, "360°"]
               ]}
               onChange={patternData => updateBrush({ patternData })}
             />

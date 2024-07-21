@@ -12,6 +12,7 @@ export interface AppPatternPickerProps {
   patternTypes: [HexmapPatternType, string][]
   nofLinesRange: [number, number]
   strokeWidthRange: [number, number]
+  scaleRange: [number, number]
   angles: [number, string][]
   onChange: (value: PatternTS) => void
   selectedColor: string
@@ -22,6 +23,7 @@ export default function AppPatternPicker({
   patternTypes, 
   nofLinesRange: [minLines, maxLines], 
   strokeWidthRange: [minWidth, maxWidth],
+  scaleRange: [minScale, maxScale],
   angles,
   onChange,
   selectedColor
@@ -37,15 +39,23 @@ export default function AppPatternPicker({
       value={value.type} options={patternTypes.map(([t, label]) => [t, label])}
       onChange={type => update({ type: Number(type) as HexmapPatternType })}
     />
+    {/* SLIDER ? */}
     <AppNumber
       label='Number of lines' className='mb-2'
       value={value.nofLines} min={minLines} max={maxLines} step={1} 
       onChange={nofLines => update({ nofLines })}
     />
+    {/* SLIDER ? */}
     <AppNumber
       label='Line width' className='mb-2'
       value={value.strokeWidth} min={minWidth} max={maxWidth} step={0.5} 
       onChange={strokeWidth => update({ strokeWidth })}
+    />
+    {/* SLIDER ? */}
+    <AppNumber
+      label='Scale' className='mb-2'
+      value={value.scale} min={minScale} max={maxScale} step={0.05} 
+      onChange={scale => update({ scale })}
     />
     <AppSelect
       label='Angle' className='mb-2'

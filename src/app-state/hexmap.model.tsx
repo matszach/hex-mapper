@@ -18,7 +18,8 @@ export interface HexmapPattern {
   dash: [number, number] | undefined
   alternatingDash: boolean
   strokeWidth: number
-  angle: number
+  angle: number,
+  scale: number,
 }      
 
 export enum HexmapPatternType {

@@ -45,7 +45,8 @@ export const defaultAppState: AppState = {
       type: HexmapPatternType.HATCH,
       dash: undefined,
       alternatingDash: false,
-      strokeWidth: 1
+      strokeWidth: 1,
+      scale: 0.8
     }
   },
   updateBrush: () => {},
