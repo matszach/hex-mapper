@@ -1,7 +1,7 @@
 import './AppPatternPicker.scss'
 import { HexmapPattern, HexmapPatternType } from "../../../app-state/hexmap.model"
 import AppAsideElementWrapper from "./AppAsideElementWrapper"
-import { AppNumber, AppSelect } from './app-bootstrap-inputs'
+import { AppNumber, AppSelect, AppSlider } from './app-bootstrap-inputs'
 import { Layer, Stage } from 'react-konva'
 import HexField from '../../canvas/canvas-elements/HexField'
 
@@ -13,7 +13,7 @@ export interface AppPatternPickerProps {
   nofLinesRange: [number, number]
   strokeWidthRange: [number, number]
   scaleRange: [number, number]
-  angles: [number, string][]
+  angleRange: [number, number]
   onChange: (value: PatternTS) => void
   selectedColor: string
 }
@@ -24,7 +24,7 @@ export default function AppPatternPicker({
   nofLinesRange: [minLines, maxLines], 
   strokeWidthRange: [minWidth, maxWidth],
   scaleRange: [minScale, maxScale],
-  angles,
+  angleRange: [minAngle, maxAngle],
   onChange,
   selectedColor
 }: AppPatternPickerProps) {
@@ -33,35 +33,33 @@ export default function AppPatternPicker({
     onChange({ ...value, ...p })
   }
 
+  const angleRatio: number = 180 / Math.PI
+
   return <AppAsideElementWrapper label="Pattern">
     <AppSelect
       label='Type' className='mb-2'
       value={value.type} options={patternTypes.map(([t, label]) => [t, label])}
       onChange={type => update({ type: Number(type) as HexmapPatternType })}
     />
-    {/* SLIDER ? */}
-    <AppNumber
-      label='Number of lines' className='mb-2'
+    <AppSlider
+      label='Number of lines' className='m-1'
       value={value.nofLines} min={minLines} max={maxLines} step={1} 
       onChange={nofLines => update({ nofLines })}
     />
-    {/* SLIDER ? */}
-    <AppNumber
-      label='Line width' className='mb-2'
-      value={value.strokeWidth} min={minWidth} max={maxWidth} step={0.5} 
+    <AppSlider
+      label='Line width' className='m-1'
+      value={value.strokeWidth} min={minWidth} max={maxWidth} step={0.1} 
       onChange={strokeWidth => update({ strokeWidth })}
     />
-    {/* SLIDER ? */}
-    <AppNumber
-      label='Scale' className='mb-2'
-      value={value.scale} min={minScale} max={maxScale} step={0.05} 
+    <AppSlider
+      label='Scale' className='m-1'
+      value={value.scale} min={minScale} max={maxScale} step={0.01} 
       onChange={scale => update({ scale })}
     />
-    {/* SLIDER ? */}
-    <AppSelect
-      label='Angle' className='mb-2'
-      value={value.angle} options={angles.map(([a, label]) => [a, label])}
-      onChange={angle => update({ angle: Number(angle) })}
+    <AppSlider
+      label='Angle' className='m-1'
+      value={value.angle * angleRatio} min={minAngle * angleRatio} max={maxAngle * angleRatio} step={1} 
+      onChange={angle => update({ angle: angle/angleRatio })}
     />
     <Stage width={300} height={90}>
       <Layer>

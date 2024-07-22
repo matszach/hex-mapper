@@ -1,4 +1,4 @@
-import { FloatingLabel, Form } from "react-bootstrap";
+import { FloatingLabel, Form, FormLabel } from "react-bootstrap";
 import { clamp } from "../../../utils/calc.utils";
 
 export interface AppInputBaseProps<T> {
@@ -41,3 +41,15 @@ export function AppNumber({ label, value, min, max, step, onChange, className }:
   )
 }
 
+export interface AppSliderProps extends AppNumberProps { }
+
+export function AppSlider({ label, value, min, max, step, onChange, className }: AppSliderProps) {
+  return <div className={className}>
+    <Form.Label>{label}: {value}</Form.Label>
+    <Form.Range
+      value={value}
+      min={min} max={max} step={step}
+      onChange={e => onChange(Number(e.target.value))}
+    />
+  </div>
+}

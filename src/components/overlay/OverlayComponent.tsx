@@ -74,25 +74,10 @@ export default function OverlayComponent() {
                 [HexmapPatternType.CROSSHATCH, "Crosshatch (WIP)"],
                 [HexmapPatternType.ZIGZAG, "Zigzag (WIP)"]
               ]}
-              nofLinesRange={[1, 13]}
+              nofLinesRange={[1, 15]}
               strokeWidthRange={[0.5, 7]}
               scaleRange={[0.1, 2]}
-              // TODO make this a slider
-              angles={[
-                [0, "0°"],
-                [Math.PI * 1/6, "30°"],
-                [Math.PI * 2/6, "60°"],
-                [Math.PI * 3/6, "90°"],
-                [Math.PI * 4/6, "120°"],
-                [Math.PI * 5/6, "150°"],
-                [Math.PI * 6/6, "180°"],
-                [Math.PI * 7/6, "210°"],
-                [Math.PI * 8/6, "240°"],
-                [Math.PI * 9/6, "270°"],
-                [Math.PI * 10/6, "300°"],
-                [Math.PI * 11/6, "330°"],
-                [Math.PI * 12/6, "360°"]
-              ]}
+              angleRange={[-Math.PI, Math.PI]}
               onChange={patternData => updateBrush({ patternData })}
             />
           )}
