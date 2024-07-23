@@ -51,6 +51,7 @@ export default function OverlayComponent() {
             [BrushType.TEXT, 'Text (WIP)']
           ]}
         />
+        {/* BUTTON TO REALIGN CANVAS / RETURN SCALE TO 1/1 */}
       </nav>
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
