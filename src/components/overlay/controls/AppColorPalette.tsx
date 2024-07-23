@@ -60,7 +60,7 @@ export default function AppColorPalette({ palette, color, colorVariety, onPalett
       onBlur={emitPaletteUpdate}
     />
     <AppSlider
-      label='Color Variety'
+      label='Color Variety' className='m-1'
       value={colorVariety}
       min={0} max={100} step={1}
       onChange={onColorVarietyChange}

@@ -36,8 +36,8 @@ export function clone(obj: any) {
   return JSON.parse(JSON.stringify(obj))
 }
 
-function randomizeAround(current: number, min: number, max: number, Variety: number): number {
-  const offset = (max - min) * Variety
+function randomizeAround(current: number, min: number, max: number, variety: number): number {
+  const offset = (max - min) * variety
   const change = randomBetween(-offset, offset)
   return clamp(current + change, min, max)
 }
