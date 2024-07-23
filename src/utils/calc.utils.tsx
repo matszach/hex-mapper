@@ -48,3 +48,7 @@ export function getRotateFn(pivotX: number, pivotY: number, angle: number): (x: 
     return [x2 + pivotX, y2 + pivotY]
   }                             
 }
+
+export function randomBetween(min: number, max: number): number {
+  return Math.random() * (max - min) + min
+}

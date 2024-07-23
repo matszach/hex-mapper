@@ -2,7 +2,7 @@ import Konva from "konva";
 import { HexmapField } from "../app-state/hexmap.model";
 import { AppState } from "../app-state/app-state.model";
 import { BrushType } from "../app-state/brush.model";
-import { honeycombAround, primaryDown, safeHex } from "./draw.tool";
+import { getColor, honeycombAround, primaryDown, safeHex } from "./draw.tool";
 
 export class Draw {
 
@@ -12,14 +12,14 @@ export class Draw {
     }
     if (brush.type === BrushType.FILL) {
       honeycombAround(hex, brush.size).forEach(hex => {
-        safeHex(map, hex, {}).fill = brush.color
+        safeHex(map, hex, {}).fill = getColor(brush)
       })
     }
     if (brush.type === BrushType.ICON) {
       honeycombAround(hex, brush.size).forEach(hex => {
         safeHex(map, hex, {}).icon = {
           key: brush.iconKey,
-          color: brush.color
+          color: getColor(brush)
         }
       })
     }
@@ -27,7 +27,7 @@ export class Draw {
       honeycombAround(hex, brush.size).forEach(hex => {
         safeHex(map, hex, {}).pattern = {
           ...brush.patternData,
-          color: brush.color
+          color: getColor(brush)
         }
       })
     }

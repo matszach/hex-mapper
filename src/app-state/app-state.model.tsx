@@ -38,6 +38,7 @@ export const defaultAppState: AppState = {
     type: BrushType.FILL,
     iconKey: 'castle',
     color: DEFAULT_PALETTE[0],
+    colorVariety: 0,
     erasing: false,
     patternData: {
       nofLines: 3,

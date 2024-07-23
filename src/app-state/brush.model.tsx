@@ -4,6 +4,7 @@ export interface Brush {
   size: number,
   type: BrushType,
   color: string,
+  colorVariety: number,
   erasing: boolean, // TO BE IMPLEMENTED
   iconKey: string,
   patternData: Omit<HexmapPattern, 'color'>,

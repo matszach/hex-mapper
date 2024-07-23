@@ -1,5 +1,8 @@
 import Konva from "konva";
 import { Hexmap, HexmapField } from "../app-state/hexmap.model";
+import { toHex, toRgb } from "../utils/color.util";
+import { clamp, randomBetween } from "../utils/calc.utils";
+import { Brush } from "../app-state/brush.model";
 
 export function primaryDown(e: Konva.KonvaEventObject<MouseEvent>) {
   return e.evt.buttons === 1
@@ -31,4 +34,22 @@ export function honeycombAround(hex: HexmapField, size: number): HexmapField[] {
 
 export function clone(obj: any) {
   return JSON.parse(JSON.stringify(obj))
+}
+
+function randomizeAround(current: number, min: number, max: number, Variety: number): number {
+  const offset = (max - min) * Variety
+  const change = randomBetween(-offset, offset)
+  return clamp(current + change, min, max)
+}
+
+export function getColor({ color, colorVariety }: Brush): string {
+  if (colorVariety) {
+    const trueVariety = colorVariety / 100
+    const [r, g, b] = toRgb(color)
+    const nr = randomizeAround(r, 0, 255, trueVariety)
+    const ng = randomizeAround(g, 0, 255, trueVariety)
+    const nb = randomizeAround(b, 0, 255, trueVariety)
+    return toHex(nr, ng, nb)
+  }
+  return color
 }

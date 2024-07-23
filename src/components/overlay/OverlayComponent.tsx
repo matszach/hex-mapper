@@ -55,12 +55,13 @@ export default function OverlayComponent() {
       <aside className='Overlay__aside' style={{ width: ASIDE_WIDTH, height: `calc(100vh - ${NAV_HEIGHT}px)` }}>
         <div className='Overlay__aside__inset'>
           <AppColorPalette
-            palette={palette} onEdit={updatePalette}
-            value={brush.color} onChange={color => updateBrush({ color })}
+            palette={palette} onPaletteChange={updatePalette}
+            color={brush.color}  onColorChange={color => updateBrush({ color })}
+            colorVariety={brush.colorVariety} onColorVarietyChange={colorVariety => updateBrush({ colorVariety })}
           />
           {/* content to depend on brush type */}
           {brush.type === BrushType.ICON && (
-            <AppIconPicker 
+            <AppIconPicker
               value={brush.iconKey} iconKeys={iconKeys}
               onChange={key => updateBrush({ iconKey: key })}
             />

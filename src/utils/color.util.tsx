@@ -15,6 +15,10 @@ export function toRgb(hex: string): [number, number, number] {
   return [r, g, b]
 }
 
+export function toHex(r: number, g: number, b: number): string {
+  return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+}
+
 const CASHED_HSL: Record<string, [number, number, number]> = {}
 
 export function toHsl(hex: string): [number, number, number] {

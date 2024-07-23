@@ -4,22 +4,25 @@ import { Form } from 'react-bootstrap'
 import { useTimer } from '../../../hooks/use-timer'
 import { areEqual } from '../../../utils/calc.utils'
 import AppAsideElementWrapper from './AppAsideElementWrapper'
+import { AppSlider } from './app-bootstrap-inputs'
 
 export interface AppColorPaletteProps {
   palette: string[],
-  onEdit: (palette: string[]) => void
-  value: string,
-  onChange: (value: string) => void
+  color: string,
+  colorVariety: number
+  onPaletteChange: (values: string[]) => void
+  onColorChange: (value: string) => void
+  onColorVarietyChange: (value: number) => void
 }
 
-export default function AppColorPalette({ palette, onEdit, value, onChange }: AppColorPaletteProps) {
+export default function AppColorPalette({ palette, color, colorVariety, onPaletteChange, onColorChange, onColorVarietyChange }: AppColorPaletteProps) {
   const [localPalette, setLocalPalette] = useState(palette)
-  const [selectedIndex, setSelectedIndex] = useState(localPalette.indexOf(value) ?? 0)
+  const [selectedIndex, setSelectedIndex] = useState(localPalette.indexOf(color) ?? 0)
   const timer = useTimer(100)
 
   const selectColor = (i: number) => {
     setSelectedIndex(i)
-    onChange(localPalette[i])
+    onColorChange(localPalette[i])
   }
 
   const updateLocalPalette = (i: number, color: string) => {
@@ -30,36 +33,14 @@ export default function AppColorPalette({ palette, onEdit, value, onChange }: Ap
 
   const emitPaletteUpdate = () => {
     if (!areEqual(palette, localPalette)) {
-      onChange(localPalette[selectedIndex])
-      onEdit(localPalette)
+      onColorChange(localPalette[selectedIndex])
+      onPaletteChange(localPalette)
     }
   }
 
   // workaround for the "no event on mouse up on colorpicker" issue
   useEffect(emitPaletteUpdate, [timer])
 
-  // return (
-  //   <div className='AppColorPalette'>
-  //     <div className="AppColorPalette__palette">
-  //       <label className="AppColorPalette__palette__label">Color</label>
-  //       {localPalette.map((color, i) => (
-  //         <div
-  //           key={i}
-  //           className={`AppColorPalette__palette__color ${i === selectedIndex ? 'AppColorPalette__palette__color--selected' : ''}`}
-  //           style={{ backgroundColor: color }}
-  //           onClick={() => selectColor(i)}
-  //         />
-  //       ))}
-  //       <Form.Control 
-  //         className='w-100 mt-1'
-  //         type="color" 
-  //         value={localPalette[selectedIndex]}
-  //         onChange={e => updateLocalPalette(selectedIndex, e.target.value)} 
-  //         onBlur={emitPaletteUpdate}
-  //       />
-  //     </div>
-  //   </div>
-  // )
   return <AppAsideElementWrapper label='Color'>
     <div className="AppColorPalette__palette">
       {localPalette.map((color, i) => (
@@ -72,11 +53,17 @@ export default function AppColorPalette({ palette, onEdit, value, onChange }: Ap
       ))}
     </div>
     <Form.Control 
-      className='w-100 mt-1'
+      className='w-100 mt-3 mb-2'
       type="color" 
       value={localPalette[selectedIndex]}
       onChange={e => updateLocalPalette(selectedIndex, e.target.value)} 
       onBlur={emitPaletteUpdate}
     />
+    <AppSlider
+      label='Color Variety'
+      value={colorVariety}
+      min={0} max={100} step={1}
+      onChange={onColorVarietyChange}
+    ></AppSlider>
   </AppAsideElementWrapper>
 }
