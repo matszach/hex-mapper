@@ -58,7 +58,7 @@ export default function AppPatternPicker({
     />
     <AppSlider
       label='Angle' className='m-1'
-      value={value.angle * angleRatio} min={minAngle * angleRatio} max={maxAngle * angleRatio} step={1} 
+      value={value.angle * angleRatio} min={minAngle * angleRatio} max={maxAngle * angleRatio} step={5} 
       onChange={angle => update({ angle: angle/angleRatio })}
     />
     <Stage width={300} height={90}>

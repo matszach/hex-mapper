@@ -71,11 +71,11 @@ export default function OverlayComponent() {
               selectedColor={brush.color}
               patternTypes={[
                 [HexmapPatternType.HATCH, "Hatch"],
-                [HexmapPatternType.CROSSHATCH, "Crosshatch (WIP)"],
-                [HexmapPatternType.ZIGZAG, "Zigzag (WIP)"]
+                [HexmapPatternType.CROSSHATCH, "Crosshatch"],
+                [HexmapPatternType.ZIGZAG, "Zigzag"]
               ]}
               nofLinesRange={[1, 15]}
-              strokeWidthRange={[0.5, 7]}
+              strokeWidthRange={[0.2, 7]}
               scaleRange={[0.1, 2]}
               angleRange={[-Math.PI, Math.PI]}
               onChange={patternData => updateBrush({ patternData })}

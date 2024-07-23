@@ -41,10 +41,25 @@ function buildLines(x: number, y: number, { nofLines, angle = 0, type, scale }: 
   if (type === HexmapPatternType.HATCH) {
     for (let i = 0; i < nofLines; i++) {
       const offsetY = (i + 1) * step - inSize
+      // TODO may want to it to hex based on rotation
       const offsetX = Math.abs(lineAbs - i) * stepAngle
       lines.push([
         ...rotateFn(x - inSize + offsetX, y + offsetY),
         ...rotateFn(x + inSize - offsetX, y + offsetY)
+      ])
+    }
+  } else if (type === HexmapPatternType.CROSSHATCH) {
+    const rotateFnCross = getRotateFn(x, y, angle + Math.PI / 3)
+    for (let i = 0; i < nofLines; i++) {
+      const offsetY = (i + 1) * step - inSize
+      const offsetX = Math.abs(lineAbs - i) * stepAngle
+      lines.push([
+        ...rotateFn(x - inSize + offsetX, y + offsetY),
+        ...rotateFn(x + inSize - offsetX, y + offsetY)
+      ])
+      lines.push([
+        ...rotateFnCross(x - inSize + offsetX, y + offsetY),
+        ...rotateFnCross(x + inSize - offsetX, y + offsetY)
       ])
     }
   } else if (type === HexmapPatternType.ZIGZAG) {
