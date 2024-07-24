@@ -1,6 +1,6 @@
-export interface HexmapField {
-  x: number
-  y: number
+import { Vector2d } from "konva/lib/types"
+
+export interface HexmapField extends Vector2d {
   icon?: HexmapIcon
   pattern?: HexmapPattern
   fill?: string
