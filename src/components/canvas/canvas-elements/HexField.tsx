@@ -23,13 +23,14 @@ export default function HexField(props: HexFieldProps) {
         radius={FIELD_SIZE}
         stroke={"black"}
         strokeWidth={1}
-        // zIndex={0}
         onMouseEnter={e => Draw.onEnterHex(e, props, context)}
         onMouseLeave={e => Draw.onLeaveHex(e, props, context)}
         onMouseDown={e => Draw.onDownHex(e, props, context)}
         onMouseUp={e => Draw.onUpHex(e, props, context)}
       ></Hex>
+      {/* TODO simplify to a fill at certain zoom */}
       <Pattern x={xPos} y={yPos} pattern={props.pattern} />
+      {/* TODO splifiy to a dot at certain zoom */}
       <Icon x={xPos} y={yPos} icon={props.icon} />
       {/* <Text x={xPos - 10} y={yPos} fill={"black"} text={`${props.x}, ${props.y}`}></Text> */}
     </>

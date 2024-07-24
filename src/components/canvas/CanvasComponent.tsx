@@ -1,4 +1,4 @@
-import { Stage, Layer, Group } from 'react-konva';
+import { Stage, Layer, Group, Rect } from 'react-konva';
 import './CanvasComponent.scss';
 import HexField from './canvas-elements/HexField';
 import { useWindowSize } from 'usehooks-ts';
@@ -17,24 +17,27 @@ Konva.dragButtons = [2]
 export default function CanvasComponent() {
   const size = useWindowSize()
   const c = useContext(AppContext)
-  const mapLayerRef = useRef(null)
+  const stageRef = useRef(null)
+  const mapRef = useRef(null)
 
   const [relativeMousePos, setRelativeMousePos] = useState<Vector2d>({ x: 0, y: 0 })
-  const [visibleMapRect, setVisibleMapRect] = useState({ x: 0, y: 0, width: 0, height: 0 })
+  const [visibleRect, setVisibleRect] = useState({ x: 0, y: 0, width: 200, height: 200 })
 
   const updateOnMouseMove = () => {
     // @ts-ignore
-    setRelativeMousePos(mapLayerRef.current?.getRelativePointerPosition())
+    setRelativeMousePos(mapRef.current?.getRelativePointerPosition())
     // @ts-ignore
-    setVisibleMapRect(mapLayerRef.current?.getClientRect())
+    const pos = mapRef.current?.getPosition() // 0,0 initiall, doesnt change on zoom, essentially this is the layters drag position ignoring offset
+    // @ts-ignore
+    const rect = mapRef.current?.getClientRect({ skipTransform: true })
   }
 
   // TODO remove when no longer needed
   useEffect(() => {
-    if (mapLayerRef.current) {
-      c.setPrintRef(mapLayerRef.current)
+    if (mapRef.current) {
+      c.setPrintRef(mapRef.current)
     }
-  }, [mapLayerRef])
+  }, [mapRef])
 
   return (
     <Stage
@@ -42,6 +45,7 @@ export default function CanvasComponent() {
       onWheel={c.handleZoom}
       onContextMenu={prevent}
       onMouseMove={updateOnMouseMove}
+      ref={stageRef}
     >
       {/* Background */}
       <Layer>
@@ -54,7 +58,7 @@ export default function CanvasComponent() {
         scale={c.zoom}
         onMouseEnter={e => Draw.onEnterCanvas(e, c)}
         onMouseLeave={e => Draw.onLeaveCanvas(e, c)}
-        ref={mapLayerRef}
+        ref={mapRef}
       > 
         {/* Optimize not to draw hexes that would be out of bounds (based od screen size, scale and drag) */}
         <Group>
@@ -64,6 +68,14 @@ export default function CanvasComponent() {
             ))
           ))}
         </Group>
+        {/* <Rect
+          x={visibleRect.x}
+          y={visibleRect.y}
+          width={visibleRect.width}
+          height={visibleRect.height}
+          fill='red'
+          opacity={0.5}
+        /> */}
         <ToolIndicator mousePos={relativeMousePos}/>
       </Layer>
     </Stage>
